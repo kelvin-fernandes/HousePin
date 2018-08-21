@@ -1,31 +1,20 @@
 package org.jacared.housepin.services.anunciante;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
-import org.jacared.housepin.models.Role;
 import org.jacared.housepin.models.Anunciante;
-import org.jacared.housepin.repositories.RoleRepository;
 import org.jacared.housepin.repositories.AnuncianteRepository;
-import org.jacared.housepin.services.usuario.AnuncianteService;
-import org.jacared.housepin.utils.EnumLogico;
-import org.jacared.housepin.utils.EnumRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service("anuncianteService")
 public class AnuncianteServiceImpl implements AnuncianteService {
-
-
     @Qualifier("anuncianteRepository")
     @Autowired
     private AnuncianteRepository anuncianteRepository;
-
-    @Qualifier("roleRepository")
-    @Autowired
-    private RoleRepository roleRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -36,9 +25,28 @@ public class AnuncianteServiceImpl implements AnuncianteService {
     }
 
     @Override
-    public void salvarAnunciante(Anunciante anunciante) {
+    public Optional<Anunciante> buscarAnunciantePorCpf(String cpf) {
+        return anuncianteRepository.findById(cpf);
+    }
+
+    @Override
+    public List<Anunciante> buscarTodos() {
+        return anuncianteRepository.findAll();
+    }
+
+    @Override
+    public void adicionar(Anunciante anunciante) {
         anunciante.setSenha(bCryptPasswordEncoder.encode(anunciante.getSenha()));
         anuncianteRepository.save(anunciante);
     }
 
+    @Override
+    public void atualizar(Anunciante anunciante) {
+
+    }
+
+    @Override
+    public void deletar(Anunciante anunciante) {
+        anuncianteRepository.delete(anunciante);
+    }
 }
