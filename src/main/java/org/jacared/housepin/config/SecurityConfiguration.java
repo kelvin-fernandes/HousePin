@@ -25,14 +25,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
-    @Value("${spring.queries.users-query}")
-    private String usersQuery;
+    @Value("${spring.queries.usuarios-query}")
+    private String usuariosQuery;
+
+    @Value("${spring.queries.roles-query}")
+    private String rolesQuery;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.
                 jdbcAuthentication()
-                .usersByUsernameQuery(usersQuery)
+                .usersByUsernameQuery(usuariosQuery)
+                .authoritiesByUsernameQuery(rolesQuery)
                 .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder);
     }
@@ -45,8 +49,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/home").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/anunciante/cadastro").permitAll()
-                .antMatchers("/anuncio/**").authenticated().anyRequest()
+                .antMatchers("/usuario/cadastro").permitAll()
+                .antMatchers("/anuncio/**").hasAnyRole().anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?erro=true")
                 .defaultSuccessUrl("/home")

@@ -17,6 +17,10 @@ public class Imagem {
     @JoinColumn(name="anuncio_id")
     private Anuncio anuncio;
 
+    @ManyToOne
+    @JoinColumn(name="usuario_cpf")
+    private Usuario usuario;
+
     public int getId() {
         return id;
     }
@@ -39,5 +43,13 @@ public class Imagem {
 
     public void setAnuncio(Anuncio anuncio) {
         this.anuncio = anuncio;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

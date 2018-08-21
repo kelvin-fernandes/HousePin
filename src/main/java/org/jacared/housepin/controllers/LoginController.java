@@ -1,7 +1,7 @@
 package org.jacared.housepin.controllers;
 
 import org.jacared.housepin.models.Anunciante;
-import org.jacared.housepin.services.anunciante.AnuncianteService;
+import org.jacared.housepin.services.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,18 +12,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 public class LoginController {
     @Autowired
-    private AnuncianteService anuncianteService;
+    private UsuarioService usuarioService;
 
     @RequestMapping(value={"/", "/home"}, method = RequestMethod.GET)
     public ModelAndView home(){
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
+        String name = auth.getName();
         modelAndView.addObject("username", name);
         modelAndView.setViewName("home");
         return modelAndView;
@@ -36,28 +35,27 @@ public class LoginController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/cadastro", method = RequestMethod.GET)
+    @RequestMapping(value="/usuario/cadastro", method = RequestMethod.GET)
     public ModelAndView cadastro(){
         ModelAndView modelAndView = new ModelAndView();
-        Anunciante anunciante = new Anunciante();
-        modelAndView.addObject("anunciante", anunciante);
+        modelAndView.addObject("anunciante", new Anunciante());
         modelAndView.setViewName("cadastro");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/cadastro", method = RequestMethod.POST)
+    @RequestMapping(value = "/usuario/cadastro", method = RequestMethod.POST)
     public ModelAndView cadastroDeNovoAnunciante(@Valid Anunciante anunciante, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        Anunciante anuncianteExists = anuncianteService.buscarAnunciantePorEmail(anunciante.getEmail());
+        Anunciante anuncianteExists = (Anunciante) usuarioService.buscarUsuarioPorEmail(anunciante.getEmail());
         if (anuncianteExists != null) {
             bindingResult
-                    .rejectValue("email", "error.anunciante",
+                    .rejectValue("email", "error.usuario",
                             "Já existe um usuário registrado com o email fornecido.");
         }
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("cadastro");
         } else {
-            anuncianteService.adicionar(anunciante);
+            usuarioService.adicionar(anunciante);
             modelAndView.addObject("successMessage", "Anunciante foi registrado com sucesso");
             modelAndView.addObject("anunciante", new Anunciante());
             modelAndView.setViewName("cadastro");
@@ -70,9 +68,9 @@ public class LoginController {
 //    public ModelAndView home1(){
 //        ModelAndView modelAndView = new ModelAndView();
 //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        Anunciante anunciante = anuncianteService.buscarAnunciantePorEmail(auth.getName());
-//        modelAndView.addObject("anuncianteName", "Welcome " + anunciante.getNome() + " (" + anunciante.getEmail() + ")");
-//        modelAndView.addObject("adminMessage","Conteúdo disponível apenas para usuário com papel de anunciante");
+//        Anunciante usuario = usuarioService.buscarAnunciantePorEmail(auth.getName());
+//        modelAndView.addObject("anuncianteName", "Welcome " + usuario.getNome() + " (" + usuario.getEmail() + ")");
+//        modelAndView.addObject("adminMessage","Conteúdo disponível apenas para usuário com papel de usuario");
 //        modelAndView.setViewName("admin/home");
 //        return modelAndView;
 //    }

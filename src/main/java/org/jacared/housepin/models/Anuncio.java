@@ -76,7 +76,7 @@ public class Anuncio {
     private Endereco endereco;
 
     @ManyToOne
-    @JoinColumn(name="anunciante_cpf", nullable = false)
+    @JoinColumn(name="usuario_cpf", nullable = false)
     private Anunciante anunciante;
 
     @ManyToOne

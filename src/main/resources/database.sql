@@ -30,7 +30,7 @@ CREATE TABLE `endereco` (
 );
 
 --
--- Table structure for table `anunciante`
+-- Table structure for table `usuario`
 --
 
 DROP TABLE IF EXISTS `anunciante`;
