@@ -3,7 +3,21 @@
 .hp-round-button { border-radius:25px !important; }
 .hp-border-light-gray { border-color:#BABABA !important; }
 .hp-color-light-gray { color:#BABABA !important; }
+.hp-color-partial-gray { color:#7E7E7E !important; }
+.hp-color-gray { color:#505050 !important; }
 .hp-color-red { color:#F23362 !important; }
+.hp-background-red { background-color:#F23362 !important; }
+.hp-background-gray { background-color:#F6F6F6 !important; }
+.hp-font-size-16 { font-size:16px !important; }
+.hp-font-size-14 { font-size:14px !important; }
+.hp-font-size-12 { font-size:12px !important; }
+.hp-font-size-10 { font-size:10px !important; }
+.hp-line-height-20 { line-height:20px !important; }
+.hp-line-height-18 { line-height:18px !important; }
+.hp-line-height-16 { line-height:16px !important; }
+.hp-line-height-14 { line-height:14px !important; }
+.hp-line-height-12 { line-height:12px !important; }
+.hp-line-height-10 { line-height:10px !important; }
 
 .hp-hover-button-anunciar:hover { background-color:#F23362 !important;color:#FFF !important;border-color:#F23362 !important; }
 .hp-hover-text-entrar:hover { color:#303438 !important;}
@@ -43,7 +57,7 @@
 .select2-search--dropdown.select2-search--hide { display: none; }
 .select2-close-mask { border: 0;margin: 0;padding: 0;display: block;position: fixed;left: 0;top: 0;min-height: 100%;min-width: 100%;height: auto;width: auto;opacity: 0;z-index: 99;background-color: #fff;filter: alpha(opacity=0); }
 .select2-hidden-accessible { border: 0 !important;clip: rect(0 0 0 0) !important;height: 1px !important;margin: -1px !important;overflow: hidden !important;padding: 0 !important;position: absolute !important;width: 1px !important; }
-.select2-container--default .select2-selection--single { background-color: #fff;border: 1px solid #aaa;border-radius: 4px; }
+.select2-container--default .select2-selection--single { background-color: #fff;border-radius: 4px; }
 .select2-container--default .select2-selection--single .select2-selection__rendered { color: #444;line-height: 28px; }
 .select2-container--default .select2-selection--single .select2-selection__clear { cursor: pointer;float: right;font-weight: bold; }
 .select2-container--default .select2-selection--single .select2-selection__placeholder { color: #999; }

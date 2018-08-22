@@ -1,3 +1,5 @@
 $(document).ready(function() {
-    $('.js-example-basic-single').select2();
+    $(".hp-select").select2({
+    	placeholder: "Tipo do imóvel"
+	});
 });
