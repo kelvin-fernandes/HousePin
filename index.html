@@ -28,8 +28,40 @@
                     </ul>
                 </div>
                 <div class="justify-content-end">
-                    <button type="button" class="btn font-weight-bold hp-font-size-14 text-secondary mr-0 bg-white hp-hover-text-entrar hp-color-gray">ENTRAR</button>
+                    <button type="button" class="btn font-weight-bold hp-font-size-14 text-secondary mr-0 bg-white hp-hover-text-entrar hp-color-gray" data-toggle="modal" data-target="#exampleModalCenter">ENTRAR</button>
                     <button type="button" class="btn font-weight-bold hp-font-size-14 hp-round-button hp-border-light-gray pl-3 pr-3 bg-white hp-color-red hp-hover-button-anunciar">ANUNCIAR</button>
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header border-bottom-0">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Entrar</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body pt-0">
+                            <form>
+                              <div class="form-group mb-2">
+                                <label for="exampleInputEmail1" class="mb-0 hp-font-size-14 hp-color-light-gray">E-mail</label>
+                                <input type="email" class="form-control hp-font-size-14" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Informe seu E-mail">
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleInputPassword1" class="mb-0 hp-font-size-14 hp-color-light-gray">Senha</label>
+                                <input type="password" class="form-control hp-font-size-14" id="exampleInputPassword1" placeholder="Informe sua Senha">
+                              </div>
+                              <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Acessar</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
                 </div>
             </div>
         </nav>
