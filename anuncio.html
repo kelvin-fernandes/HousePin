@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/css.css">
 
-    <title>House Pin - Sua referência em imóveis</title>
+    <title>Anúncio | House Pin - Sua referência em imóveis</title>
 </head>
 <body class="hp-background-gray">
 
@@ -67,7 +67,7 @@
         </nav>
     </header>
 
-    <div class="hp-search-home">
+    <div class="hp-search-interno">
         <div class="container">
             <div class="hp-base-formulario mx-auto">
                 <div class="hp-finalidade font-weight-bold mr-1">
@@ -88,11 +88,106 @@
     </div>
 
     <div class="container pt-4">
-        <h6 class="font-weight-bold mb-4">Mais de 300 imóveis</h6>
+        <h6 class="font-weight-bold mb-4">Anúncio</h6>
+        
+
+        <!--
+        ok - endereço
+        ok - finalidade - venda ou aluguel
+        ok -tipo do imovel - select
+        ok - condição - novo / usado
+        ok - descrição
+        ok - observações
+        características
+            - area útil
+            - area total
+            - condomínio
+            - iptu
+            - ...
+        imagens
+        valor
+        situação - do anúncio
+        expiração
+        -->
+
+
 
         <div class="row">
+            <div class="col-xl-9 mb-4">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="inputZip">CEP</label>
+                            <input type="text" class="form-control" id="campo_cep" placeholder="CEP">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="inputCity">Cidade</label>
+                            <input type="text" class="form-control" id="campo_cidade" placeholder="Cidade">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputState">Estado</label>
+                            <select id="campo_estado" class="form-control">
+                                <option selected>Selecione</option>
+                                <option>...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                         <div class="form-group col-md-4">
+                            <label for="inputCity">Bairro</label>
+                            <input type="text" class="form-control" id="campo_bairro" placeholder="Bairro">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="inputCity">Rua</label>
+                            <input type="text" class="form-control" id="campo_rua" placeholder="Rua">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputZip">Número</label>
+                            <input type="text" class="form-control" id="campo_numero" placeholder="Número">
+                        </div>
+                    </div>
+                    <div class="form-row mt-1">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="campo_compra" name="campo_finalidade" class="custom-control-input" checked="checked">
+                            <label class="custom-control-label" for="campo_compra">Compra</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="campo_venda" name="campo_finalidade" class="custom-control-input">
+                            <label class="custom-control-label" for="campo_venda">Venda</label>
+                        </div>
+                    </div>
+                    <div class="form-row mt-3">
+                        <div class="form-group col-md-8">
+                            <label for="inputEmail4">Tipo do Imóvel</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option value="">Selecione</option>                    
+                                <optgroup label="RESIDENCIAL"><option value="15">Apart Hotel / Flat / Loft</option><option value="1">Apartamento</option><option value="14">Apto. Cobertura / Duplex</option><option value="11">Casa-Condomínio</option><option value="2">Casa-Térrea</option><option value="5">Kitnet</option><option value="6">Sobrado</option><option value="13">Sobrado-Condomínio</option><option value="4">Terreno</option><option value="12">Terreno-Condomínio</option></optgroup>
+                                <optgroup label="COMERCIAL"><option value="16">Área</option><option value="17">Casa Comercial</option><option value="18">Galpão / Depósito</option><option value="3">Imóvel Comercial</option><option value="19">Indústria / Fábrica</option><option value="20">Ponto Comercial</option><option value="21">Pousada / Hotel / Motel</option><option value="22">Sala / Salão / Loja</option></optgroup>
+                                <optgroup label="RURAL"><option value="7">Chácara</option><option value="8">Fazenda</option><option value="23">Haras</option><option value="9">Pesqueiro</option><option value="10">Sitio</option></optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail4">Condições</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option value="">Selecione</option>                    
+                                <option value="">Novo</option>
+                                <option value="">Usado</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="exampleFormControlTextarea1">Descrição</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="exampleFormControlTextarea1">Observação</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-4">Cadastrar</button>
+                </form>
+            </div>
             <div class="col-xl-3 mb-4">
-                <div class="card border-0 hp-background-gray">
+                <div class="card border-0 mb-4 hp-background-gray">
                     <img class="card-img-top rounded" src="images/lista-imovel.png" alt="localização do imovel">
                     <div class="card-body p-0">
                         <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">APARTAMENTO</span>
@@ -100,9 +195,7 @@
                         <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">Rua Visconde Bastos, 358</span>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-3 mb-4">
-                <div class="card border-0 hp-background-gray">
+                <div class="card border-0 mb-4 hp-background-gray">
                     <img class="card-img-top rounded" src="images/lista-imovel.png" alt="localização do imovel">
                     <div class="card-body p-0">
                         <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">APARTAMENTO</span>
@@ -110,59 +203,7 @@
                         <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">Rua Visconde Bastos, 358</span>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-3 mb-4">
-                <div class="card border-0 hp-background-gray">
-                    <img class="card-img-top rounded" src="images/lista-imovel.png" alt="localização do imovel">
-                    <div class="card-body p-0">
-                        <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">APARTAMENTO</span>
-                        <div class="hp-font-size-16 font-weight-bold hp-line-height-20">Jardim Universitário<br>Dourados - MS</div>
-                        <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">Rua Visconde Bastos, 358</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 mb-4">
-                <div class="card border-0 hp-background-gray">
-                    <img class="card-img-top rounded" src="images/lista-imovel.png" alt="localização do imovel">
-                    <div class="card-body p-0">
-                        <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">APARTAMENTO</span>
-                        <div class="hp-font-size-16 font-weight-bold hp-line-height-20">Jardim Universitário<br>Dourados - MS</div>
-                        <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">Rua Visconde Bastos, 358</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 mb-4">
-                <div class="card border-0 hp-background-gray">
-                    <img class="card-img-top rounded" src="images/lista-imovel.png" alt="localização do imovel">
-                    <div class="card-body p-0">
-                        <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">APARTAMENTO</span>
-                        <div class="hp-font-size-16 font-weight-bold hp-line-height-20">Jardim Universitário<br>Dourados - MS</div>
-                        <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">Rua Visconde Bastos, 358</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 mb-4">
-                <div class="card border-0 hp-background-gray">
-                    <img class="card-img-top rounded" src="images/lista-imovel.png" alt="localização do imovel">
-                    <div class="card-body p-0">
-                        <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">APARTAMENTO</span>
-                        <div class="hp-font-size-16 font-weight-bold hp-line-height-20">Jardim Universitário<br>Dourados - MS</div>
-                        <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">Rua Visconde Bastos, 358</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 mb-4">
-                <div class="card border-0 hp-background-gray">
-                    <img class="card-img-top rounded" src="images/lista-imovel.png" alt="localização do imovel">
-                    <div class="card-body p-0">
-                        <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">APARTAMENTO</span>
-                        <div class="hp-font-size-16 font-weight-bold hp-line-height-20">Jardim Universitário<br>Dourados - MS</div>
-                        <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">Rua Visconde Bastos, 358</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 mb-4">
-                <div class="card border-0 hp-background-gray">
+                <div class="card border-0 mb-4 hp-background-gray">
                     <img class="card-img-top rounded" src="images/lista-imovel.png" alt="localização do imovel">
                     <div class="card-body p-0">
                         <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">APARTAMENTO</span>

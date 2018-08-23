@@ -1,6 +1,7 @@
 * { font-family: 'Roboto', sans-serif !important; }
 .hp-h-100 { height:100px !important; }
 .hp-round-button { border-radius:25px !important; }
+.hp-round-2 { border-radius:2px !important; }
 .hp-border-light-gray { border-color:#BABABA !important; }
 .hp-color-light-gray { color:#BABABA !important; }
 .hp-color-partial-gray { color:#7E7E7E !important; }
@@ -22,7 +23,8 @@
 .hp-hover-button-anunciar:hover { background-color:#F23362 !important;color:#FFF !important;border-color:#F23362 !important; }
 .hp-hover-text-entrar:hover { color:#303438 !important;}
 
-.hp-search-home { background-image:url('../images/bg-search.png');height:245px !important;padding-top:70px; }
+.hp-search-home { background-image:url('../images/bg-search.png');height:230px !important;padding-top:70px; }
+.hp-search-interno { background-image:url('../images/bg-search.png');height:128px !important;padding-top:10px; }
 .hp-base-formulario { width:830px;height:50px;background-color:#FFF;display:block;margin-top:30px;-webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;position:relative; }
 .hp-base-formulario .hp-finalidade { width:auto;height:50px;display:block;padding-top:13px;float:left; }
 .hp-base-formulario .hp-finalidade > span { cursor:pointer;transition: 0.2s;color:#424242;border-right:1px solid #E2E2E2;padding:15px 20px;height:50px; }
@@ -50,7 +52,7 @@
 .select2-results__option[aria-selected] { cursor: pointer; }
 .select2-container--open .select2-dropdown { left: 0; }
 .select2-container--open .select2-dropdown--above { border-bottom: none;border-bottom-left-radius: 0;border-bottom-right-radius: 0; }
-.select2-container--open .select2-dropdown--below { border-top: none;border-top-left-radius: 0;border-top-right-radius: 0; }
+.select2-container--open .select2-dropdown--below { border-top: none;border-top-left-radius: 0;border-top-right-radius: 0;top:9px; }
 .select2-search--dropdown { display: block;padding: 4px; }
 .select2-search--dropdown .select2-search__field { padding: 4px;width: 100%;box-sizing: border-box; }
 .select2-search--dropdown .select2-search__field::-webkit-search-cancel-button { -webkit-appearance: none; }
