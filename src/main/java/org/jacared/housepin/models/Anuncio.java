@@ -3,7 +3,6 @@ package org.jacared.housepin.models;
 import org.jacared.housepin.utils.EnumCondicao;
 import org.jacared.housepin.utils.EnumFinalidade;
 import org.jacared.housepin.utils.EnumLogico;
-import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;

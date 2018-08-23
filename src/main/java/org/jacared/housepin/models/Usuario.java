@@ -1,13 +1,9 @@
 package org.jacared.housepin.models;
 
-import org.jacared.housepin.utils.EnumLogico;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import java.util.Collection;
 
 @Entity(name = "usuario")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -48,11 +44,6 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name="cep")
     private Endereco endereco;
-
-    @ManyToMany
-    @JoinTable( name = "usuario_role", joinColumns = @JoinColumn(name = "usuario_cpf", referencedColumnName = "usuario_cpf"),
-            inverseJoinColumns = @JoinColumn( name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
 
     public String getCpf() {
         return cpf;
@@ -116,13 +107,5 @@ public class Usuario {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
-    }
-
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
     }
 }

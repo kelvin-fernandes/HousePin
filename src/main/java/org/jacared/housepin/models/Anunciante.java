@@ -1,11 +1,10 @@
 package org.jacared.housepin.models;
 
-import org.jacared.housepin.utils.EnumLogico;
-import org.jacared.housepin.utils.EnumTipoUsuario;
-import org.springframework.data.annotation.Transient;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @DiscriminatorValue("Anunciante")

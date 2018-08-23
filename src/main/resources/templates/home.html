@@ -6,6 +6,46 @@
 </head>
 <body>
     <h1>Home works!!!</h1>
-    <h2 th:text="${username}">::</h2>
+    <!--<h2 th:text="${username}">::</h2>-->
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Situação</th>
+            <th>Data de Inserção</th>
+            <th>Data de Expiração</th>
+            <th>Valor</th>
+            <!--<th>Condomínio</th>-->
+            <!--<th>IPTU</th>-->
+            <!--<th>Observacoes</th>-->
+            <!--<th>Descrição</th>-->
+            <!--<th>Condição</th>-->
+            <!--<th>Finalidade</th>-->
+            <!--<th>Área Total</th>-->
+            <!--<th>Área Útil</th>-->
+            <!--<th>Número</th>-->
+            <!--<th>CEP</th>-->
+            <!--<th>CPF Usuário</th>-->
+            <!--<th>Tipo Imóvel</th>-->
+        </tr>
+        <tr th:each="anuncio : ${anuncios}">
+            <td th:text="${anuncio.getId()}"></td>
+            <td th:text="${anuncio.getSituacao()}"></td>
+            <td th:text="${anuncio.getDataInsercao()}"></td>
+            <td th:text="${anuncio.getDataExpiracao()}"></td>
+            <td th:text="${anuncio.getValor()}"></td>
+            <!--<td th:text="${anuncio.getCondominio()}"></td>-->
+            <!--<td th:text="${anuncio.getIptu()}"></td>            -->
+            <!--<td th:text="${anuncio.getObservacoes()}"></td>-->
+            <!--<td th:text="${anuncio.getDescricao()}"></td>-->
+            <!--<td th:text="${anuncio.getCondicao()}"></td>-->
+            <!--<td th:text="${anuncio.getFinalidade()}"></td>-->
+            <!--<td th:text="${anuncio.getAreaTotal()}"></td>-->
+            <!--<td th:text="${anuncio.getAreaUtil()}"></td>-->
+            <!--<td th:text="${anuncio.getNumeroEndereco()}"></td>-->
+            <!--<td th:text="${anuncio.getCep()}"></td>-->
+            <!--<td th:text="${anuncio.getUsuarioCpf()}"></td>-->
+            <!--<td th:text="${anuncio.getTipoImovel()}"></td>-->
+        </tr>
+    </table>
 </body>
 </html>

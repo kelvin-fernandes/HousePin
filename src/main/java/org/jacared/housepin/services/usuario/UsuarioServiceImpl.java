@@ -4,7 +4,6 @@ import org.jacared.housepin.models.Usuario;
 import org.jacared.housepin.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +16,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+//    @Autowired
+//    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public Usuario buscarUsuarioPorEmail(String email) {
@@ -37,7 +36,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public void adicionar(Usuario usuario) {
-        usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
+//        usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
         usuarioRepository.save(usuario);
     }
 
