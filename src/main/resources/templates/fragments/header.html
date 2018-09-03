@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>House Pin - Sua referência em imóveis</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/css.css}" href="/css/css.css" type="text/css"/>
+</head>
+<body>
+<header th:fragment="header-sem-usuario">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white d-flex justify-content-end hp-h-100">
+        <div class="container">
+            <a href="#" class="mr-4"><img src="/images/logo.svg" alt="House Pin - Sua referência em imóveis"/></a>
+            <button class="navbar-toggler border-white" type="button" data-toggle="collapse" data-target="#menu"
+                    aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse navbar-toggler-lg bg-white text-lg-right pl-4 border-left" id="menu">
+                <ul class="navbar-nav font-weight-bold">
+                    <li class="nav-item mr-2"><a class="nav-link hp-font-size-14 hp-color-gray" href="novidades.html">NOVIDADES</a>
+                    </li>
+                    <li class="nav-item mr-2"><a class="nav-link hp-font-size-14 hp-color-gray" href="promocoes.html">PROMOÇÕES</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link hp-font-size-14 hp-color-gray"
+                                            href="duvidas-frequentes.html">DÚVIDAS FREQUENTES</a></li>
+                </ul>
+            </div>
+            <div class="justify-content-end">
+                <button type="button"
+                        class="btn font-weight-bold hp-font-size-14 text-secondary mr-0 bg-white hp-hover-text-entrar hp-color-gray"
+                        data-toggle="modal" data-target="#exampleModalCenter">ENTRAR
+                </button>
+
+                <a th:href="@{/anuncio/cadastro}"
+                   class="btn font-weight-bold hp-font-size-14 hp-round-button hp-border-light-gray pl-3 pr-3 bg-white hp-color-red hp-hover-button-anunciar"
+                   role="button" aria-pressed="true">ANUNCIAR</a>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header border-bottom-0">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Entrar</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body pt-0">
+                                <form>
+                                    <div class="form-group mb-2">
+                                        <label for="exampleInputEmail1"
+                                               class="mb-0 hp-font-size-14 hp-color-light-gray">E-mail</label>
+                                        <input type="email" class="form-control hp-font-size-14" id="exampleInputEmail1"
+                                               aria-describedby="emailHelp" placeholder="Informe seu E-mail">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1"
+                                               class="mb-0 hp-font-size-14 hp-color-light-gray">Senha</label>
+                                        <input type="password" class="form-control hp-font-size-14"
+                                               id="exampleInputPassword1" placeholder="Informe sua Senha">
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">Acessar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+</body>
+</html>

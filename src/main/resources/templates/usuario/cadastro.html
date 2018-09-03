@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/css.css}" href="/css/css.css" type="text/css"/>
+
+    <title>House Pin - Sua referência em imóveis</title>
+</head>
+<body class="hp-background-gray">
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white d-flex justify-content-end hp-h-100">
+        <div class="container">
+            <a href="#" class="mr-4"><img src="/images/logo.svg" alt="House Pin - Sua referência em imóveis"/></a>
+            <button class="navbar-toggler border-white" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse navbar-toggler-lg bg-white text-lg-right pl-4 border-left" id="menu">
+                <ul class="navbar-nav font-weight-bold">
+                    <li class="nav-item mr-2"><a class="nav-link hp-font-size-14 hp-color-gray" href="novidades.html">NOVIDADES</a></li>
+                    <li class="nav-item mr-2"><a class="nav-link hp-font-size-14 hp-color-gray" href="promocoes.html">PROMOÇÕES</a></li>
+                    <li class="nav-item"><a class="nav-link hp-font-size-14 hp-color-gray" href="duvidas-frequentes.html">DÚVIDAS FREQUENTES</a></li>
+                </ul>
+            </div>
+            <div class="justify-content-end">
+                <button type="button" class="btn font-weight-bold hp-font-size-14 text-secondary mr-0 bg-white hp-hover-text-entrar hp-color-gray" data-toggle="modal" data-target="#exampleModalCenter">ENTRAR</button>
+                <a href="cadastro.html" class="btn font-weight-bold hp-font-size-14 hp-round-button hp-border-light-gray pl-3 pr-3 bg-white hp-color-red hp-hover-button-anunciar" role="button" aria-pressed="true">ANUNCIAR</a>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header border-bottom-0">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Entrar</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body pt-0">
+                                <form>
+                                    <div class="form-group mb-2">
+                                        <label for="exampleInputEmail1" class="mb-0 hp-font-size-14 hp-color-light-gray">E-mail</label>
+                                        <input type="email" class="form-control hp-font-size-14" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Informe seu E-mail">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1" class="mb-0 hp-font-size-14 hp-color-light-gray">Senha</label>
+                                        <input type="password" class="form-control hp-font-size-14" id="exampleInputPassword1" placeholder="Informe sua Senha">
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">Acessar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="hp-search-interno">
+    <div class="container">
+        <div class="hp-base-formulario mx-auto">
+            <div class="hp-finalidade font-weight-bold mr-1">
+                <span class="item marcado" data-value="comprar">Comprar</span>
+                <span class="item" data-value="alugar">Alugar</span>
+                <input type="hidden" name="finalidade" value="comprar">
+            </div>
+            <select class="hp-select font-weight-bold ml-0 mr-0" name="state">
+                <option></option>
+                <optgroup label="RESIDENCIAL"><option value="15">Apart Hotel / Flat / Loft</option><option value="1">Apartamento</option><option value="14">Apto. Cobertura / Duplex</option><option value="11">Casa-Condomínio</option><option value="2">Casa-Térrea</option><option value="5">Kitnet</option><option value="6">Sobrado</option><option value="13">Sobrado-Condomínio</option><option value="4">Terreno</option><option value="12">Terreno-Condomínio</option></optgroup>
+                <optgroup label="COMERCIAL"><option value="16">Área</option><option value="17">Casa Comercial</option><option value="18">Galpão / Depósito</option><option value="3">Imóvel Comercial</option><option value="19">Indústria / Fábrica</option><option value="20">Ponto Comercial</option><option value="21">Pousada / Hotel / Motel</option><option value="22">Sala / Salão / Loja</option></optgroup>
+                <optgroup label="RURAL"><option value="7">Chácara</option><option value="8">Fazenda</option><option value="23">Haras</option><option value="9">Pesqueiro</option><option value="10">Sitio</option></optgroup>
+            </select>
+            <input type="" name="" class="hp-input font-weight-bold ml-0 bg-white pl-3 pr-3" placeholder="Localidade" />
+            <button type="button" class="btn font-weight-bold pl-4 pr-4 hp-button-search">Buscar</button>
+        </div>
+    </div>
+</div>
+
+<div class="container pt-4">
+    <h6 class="font-weight-bold mb-4">Cadastro</h6>
+
+    <div class="row">
+        <div class="col-xl-6 mb-4">
+            <form th:action="@{/anuncio/cadastro}" th:object="${anuncio}" method="post">
+                <div class="mb-3">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="campo_pessoa_fisica" name="campo_pessoa" class="custom-control-input" checked="checked">
+                        <label class="custom-control-label" for="campo_pessoa_fisica">Pessoa Física</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="campo_pessoa_juridica" name="campo_pessoa" class="custom-control-input">
+                        <label class="custom-control-label" for="campo_pessoa_juridica">Pessoa Jurídica</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="campo_nome_completo">Nome Completo</label>
+                        <input type="email" class="form-control" id="campo_nome_completo" placeholder="Nome Completo">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="campo_creci">CRECI</label>
+                        <input type="password" class="form-control" id="campo_creci" placeholder="CRECI">
+                    </div>
+                </div>
+                <div class="form-row hp-grupo-pessoa-fisica d-none">
+                    <div class="form-group col-md-4">
+                        <label for="campo_cnpj">CNPJ</label>
+                        <input type="email" class="form-control" id="campo_cnpj" placeholder="CNPJ">
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label for="campo_razao_social">Razão Social</label>
+                        <input type="email" class="form-control" id="campo_razao_social" placeholder="Razão Social">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="campo_cpf">CPF</label>
+                        <input type="password" class="form-control" id="campo_cpf" placeholder="CPF">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="campo_telefone">Telefone</label>
+                        <input type="password" class="form-control" id="campo_telefone" placeholder="Telefone">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="campo_email">E-mail</label>
+                        <input type="email" class="form-control" id="campo_email" placeholder="E-mail">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="campo_senha">Senha</label>
+                        <input type="password" class="form-control" id="campo_senha" placeholder="Senha">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="campo_cep">CEP</label>
+                        <input type="text" class="form-control" id="campo_cep" placeholder="CEP">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="campo_cidade">Cidade</label>
+                        <input type="text" class="form-control" id="campo_cidade" placeholder="Cidade">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="campo_estado">Estado</label>
+                        <select id="campo_estado" class="form-control">
+                            <option selected>Selecione</option>
+                            <option>...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="campo_bairro">Bairro</label>
+                        <input type="text" class="form-control" id="campo_bairro" placeholder="Bairro">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="campo_rua">Rua</label>
+                        <input type="text" class="form-control" id="campo_rua" placeholder="Rua">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="campo_numero">Número</label>
+                        <input type="text" class="form-control" id="campo_numero" placeholder="Número">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-4">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer class="page-footer hp-background-red text-white pt-4 pb-4 mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col text-left hp-font-size-14 font-weight-bold">Copyright © 2018, House Pin. Todos os direitos
+                reservados.
+            </div>
+            <div class="col text-right hp-font-size-14 font-weight-bold"><a href="" class="text-white">TERMOS DE USO</a><a
+                    href="" class="text-white ml-4">POLÍTICA DE PRIVACIDADE</a></div>
+        </div>
+    </div>
+</footer>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script src="/javascript/scripts.js"></script>
+</body>
+</html>
