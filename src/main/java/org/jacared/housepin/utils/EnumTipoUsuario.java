@@ -2,9 +2,7 @@ package org.jacared.housepin.utils;
 
 public enum EnumTipoUsuario {
 
-    ANUNCIANTE("Anunciante"),
-
-    CLIENTE("Cliente");
+    ANUNCIANTE("Anunciante");
 
     private final String name;
 

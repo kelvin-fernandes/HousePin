@@ -22,7 +22,7 @@ public class Anuncio {
     @Column(name = "anuncio_id")
     private int id;
 
-    @NotNull(message = "Escolha a situação atual do anúncio.")
+//    @NotNull(message = "Escolha a situação atual do anúncio.")
     @Enumerated(EnumType.STRING)
     @Column(name = "situacao")
     private EnumLogico situacao;
@@ -33,8 +33,8 @@ public class Anuncio {
     @Column(name = "data_expiracao")
     private Date dataExpiracao;
 
-    @NotEmpty(message = "Insira um valor para o anúncio.")
-    @NotBlank(message = "Insira um valor válido.")
+//    @NotEmpty(message = "Insira um valor para o anúncio.")
+//    @NotBlank(message = "Insira um valor válido.")
     @Column(name = "valor", nullable = false)
     private double valor;
 
@@ -47,7 +47,7 @@ public class Anuncio {
     @Column(name = "observacoes")
     private String observacoes;
 
-    @Min(value = 50, message = "A descrição deve ter pelo menos 50 caractesres.")
+//    @Min(value = 50, message = "A descrição deve ter pelo menos 50 caractesres.")
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
@@ -65,26 +65,131 @@ public class Anuncio {
     @Column(name = "area_util")
     private double areaUtil;
 
-    @NotEmpty(message = "Insira o número do ímóvel.")
-    @NotBlank(message = "Insira um número válido.")
-    @Column(name = "endereco_numero", nullable = false)
-    private int numeroEndereco;
-
     @ManyToOne
-    @JoinColumn(name="cep", nullable = false)
+    @JoinColumn(name="endereco_id", nullable = false)
     private Endereco endereco;
 
     @ManyToOne
     @JoinColumn(name="usuario_cpf", nullable = false)
     private Anunciante anunciante;
 
-    @ManyToOne
-    @JoinColumn(name="tipo_imovel_id", nullable = false)
-    private TipoImovel tipoImovel;
+    public int getId() {
+        return id;
+    }
 
-    @ManyToMany(mappedBy = "anuncios")
-    private Set<Caracteristica> caracteristicas = new HashSet<>();
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    @OneToMany(mappedBy = "anuncio")
-    Set<Imagem> imagens = new HashSet<>();
+    public EnumLogico getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(EnumLogico situacao) {
+        this.situacao = situacao;
+    }
+
+    public Timestamp getDataInsercao() {
+        return dataInsercao;
+    }
+
+    public void setDataInsercao(Timestamp dataInsercao) {
+        this.dataInsercao = dataInsercao;
+    }
+
+    public Date getDataExpiracao() {
+        return dataExpiracao;
+    }
+
+    public void setDataExpiracao(Date dataExpiracao) {
+        this.dataExpiracao = dataExpiracao;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public double getCondominio() {
+        return condominio;
+    }
+
+    public void setCondominio(double condominio) {
+        this.condominio = condominio;
+    }
+
+    public double getIptu() {
+        return iptu;
+    }
+
+    public void setIptu(double iptu) {
+        this.iptu = iptu;
+    }
+
+    public String getObservacoes() {
+        return observacoes;
+    }
+
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public EnumCondicao getCondicao() {
+        return condicao;
+    }
+
+    public void setCondicao(EnumCondicao condicao) {
+        this.condicao = condicao;
+    }
+
+    public EnumFinalidade getFinalidade() {
+        return finalidade;
+    }
+
+    public void setFinalidade(EnumFinalidade finalidade) {
+        this.finalidade = finalidade;
+    }
+
+    public double getAreaTotal() {
+        return areaTotal;
+    }
+
+    public void setAreaTotal(double areaTotal) {
+        this.areaTotal = areaTotal;
+    }
+
+    public double getAreaUtil() {
+        return areaUtil;
+    }
+
+    public void setAreaUtil(double areaUtil) {
+        this.areaUtil = areaUtil;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public Anunciante getAnunciante() {
+        return anunciante;
+    }
+
+    public void setAnunciante(Anunciante anunciante) {
+        this.anunciante = anunciante;
+    }
 }

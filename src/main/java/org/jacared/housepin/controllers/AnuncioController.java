@@ -1,9 +1,13 @@
 package org.jacared.housepin.controllers;
 
+import org.jacared.housepin.models.Anunciante;
+import org.jacared.housepin.models.Anuncio;
 import org.jacared.housepin.services.anuncio.AnuncioService;
 import org.jacared.housepin.services.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,16 +23,19 @@ public class AnuncioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
-    public ModelAndView home() {
+    @RequestMapping(value = {"/anuncio/cadastro"}, method = RequestMethod.GET)
+    public ModelAndView cadastro() {
         ModelAndView modelAndView = new ModelAndView();
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        String name = auth.getName();
-//        modelAndView.addObject("username", name);
-        ArrayList anuncios = (ArrayList) anuncioService.buscarTodosOrdenadoPorDataDeInsercao();
-        modelAndView.addObject("anuncios", anuncios);
-        modelAndView.setViewName("home");
+        modelAndView.addObject("anuncio",new Anuncio());
+        modelAndView.setViewName("anuncio/cadastro");
         return modelAndView;
+    }
+
+    @RequestMapping(value = {"/anuncio/cadastro"}, method = RequestMethod.POST)
+    public String cadastro(@ModelAttribute Anuncio anuncio) {
+        anuncio.setAnunciante(new Anunciante(){{setCpf("059.732.891-92");}});
+        anuncioService.adicionar(anuncio);
+        return "/";
     }
 
     @RequestMapping(value="/admin/home", method = RequestMethod.GET)

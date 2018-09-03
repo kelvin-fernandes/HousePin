@@ -1,5 +1,7 @@
 package org.jacared.housepin.models;
 
+import org.jacared.housepin.utils.EnumLogico;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -11,38 +13,36 @@ import javax.validation.constraints.NotEmpty;
 public class Usuario {
     @Id
     @Column(name = "usuario_cpf", length = 14)
-    @NotEmpty(message = "Insira o seu CPF.")
-    @NotBlank(message = "Insira um CPF válido.")
+//    @NotEmpty(message = "Insira o seu CPF.")
+//    @NotBlank(message = "Insira um CPF válido.")
     private String cpf;
 
-    @Email(message = "Insira um email válido")
+//    @Email(message = "Insira um email válido")
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @NotEmpty(message = "Escolha a sua senha.")
+//    @NotEmpty(message = "Escolha a sua senha.")
 //    @Min(value = 6, message = "A senha deve ter pelo menos 6 caracteres.")
     @Column(name = "senha", nullable = false)
-    @org.springframework.data.annotation.Transient
+//    @Transient
     private String senha;
 
-    @NotEmpty(message = "Insira o seu nome.")
-    @NotBlank(message = "Insira um nome válido.")
+//    @NotEmpty(message = "Insira o seu nome.")
+//    @NotBlank(message = "Insira um nome válido.")
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @NotEmpty(message = "Insira o seu telefone.")
-    @NotBlank(message = "Insira um telefone válido.")
+//    @NotEmpty(message = "Insira o seu telefone.")
+//    @NotBlank(message = "Insira um telefone válido.")
     @Column(name = "telefone", nullable = false)
     private String telefone;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "situacao")
-    private boolean situacao;
-
-    @Column(name = "endereco_numero")
-    private int numeroEndereco;
+    private EnumLogico situacao;
 
     @ManyToOne
-    @JoinColumn(name="cep")
+    @JoinColumn(name="endereco_id")
     private Endereco endereco;
 
     public String getCpf() {
@@ -85,20 +85,12 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    public boolean isSituacao() {
+    public EnumLogico getSituacao() {
         return situacao;
     }
 
-    public void setSituacao(boolean situacao) {
+    public void setSituacao(EnumLogico situacao) {
         this.situacao = situacao;
-    }
-
-    public int getNumeroEndereco() {
-        return numeroEndereco;
-    }
-
-    public void setNumeroEndereco(int numeroEndereco) {
-        this.numeroEndereco = numeroEndereco;
     }
 
     public Endereco getEndereco() {

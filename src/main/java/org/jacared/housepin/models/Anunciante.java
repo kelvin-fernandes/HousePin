@@ -9,8 +9,8 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @DiscriminatorValue("Anunciante")
 public class Anunciante extends Usuario {
-    @NotEmpty(message = "Insira o seu CRECI.")
-    @NotBlank(message = "Insira um CRECI válido.")
+//    @NotEmpty(message = "Insira o seu CRECI.")
+//    @NotBlank(message = "Insira um CRECI válido.")
     @Column(name = "creci", unique = true, length = 20)
     private String creci;
 

@@ -1,9 +1,6 @@
 package org.jacared.housepin.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
@@ -11,13 +8,20 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "endereco")
 public class Endereco {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "endereco_id")
+    private int id;
+
     @Column(name = "cep", length = 9)
-    @NotEmpty(message = "Insira o seu CEP.")
-    @NotBlank(message = "Insira um CEP válido.")
+//    @NotEmpty(message = "Insira o seu CEP.")
+//    @NotBlank(message = "Insira um CEP válido.")
     private String cep;
 
     @Column(name = "logradouro", nullable = false, length = 100)
     private String logradouro;
+
+    @Column(name = "endereco_numero", nullable = false)
+    private int numeroEndereco;
 
     @Column(name = "complemento", nullable = false, length = 100)
     private String complemento;
@@ -37,6 +41,14 @@ public class Endereco {
     @Column(name = "longitude")
     private double longitude;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getCep() {
         return cep;
     }
@@ -51,6 +63,14 @@ public class Endereco {
 
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
+    }
+
+    public int getNumeroEndereco() {
+        return numeroEndereco;
+    }
+
+    public void setNumeroEndereco(int numeroEndereco) {
+        this.numeroEndereco = numeroEndereco;
     }
 
     public String getComplemento() {
