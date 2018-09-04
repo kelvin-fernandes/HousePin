@@ -30,16 +30,13 @@
                 </ul>
             </div>
             <div class="justify-content-end">
-                <button type="button"
-                        class="btn font-weight-bold hp-font-size-14 text-secondary mr-0 bg-white hp-hover-text-entrar hp-color-gray"
-                        data-toggle="modal" data-target="#exampleModalCenter">ENTRAR
-                </button>
 
-                <a th:href="@{/anuncio/cadastro}"
-                   class="btn font-weight-bold hp-font-size-14 hp-round-button hp-border-light-gray pl-3 pr-3 bg-white hp-color-red hp-hover-button-anunciar"
-                   role="button" aria-pressed="true">ANUNCIAR</a>
+                <!-- USUÁRIO DESLOGADO
 
-                <!-- Modal -->
+                <button type="button" class="btn font-weight-bold hp-font-size-14 text-secondary mr-0 bg-white hp-hover-text-entrar hp-color-gray" data-toggle="modal" data-target="#exampleModalCenter">ENTRAR</button>
+
+                <a th:href="@{/anuncio/cadastro}" class="btn font-weight-bold hp-font-size-14 hp-round-button hp-border-light-gray pl-3 pr-3 bg-white hp-color-red hp-hover-button-anunciar" role="button" aria-pressed="true">ANUNCIAR</a>
+
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
@@ -72,6 +69,17 @@
                         </div>
                     </div>
                 </div>
+                <!-- END USUÁRIO DESLOGADO -->
+
+                <div class="btn-group">
+                    <a type="button" class="btn font-weight-bold hp-font-size-14 text-secondary mr-0 bg-white hp-hover-text-entrar hp-color-gray hp-usuario-logado-opcoes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">RODRIGO GOLFETO</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button">Meu Perfil</button>
+                        <button class="dropdown-item" type="button">Meus Anúncios</button>
+                        <button class="dropdown-item" type="button">Sair da Conta</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </nav>
