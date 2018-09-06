@@ -18,7 +18,7 @@ import java.util.Set;
 @Table(name = "anuncio")
 public class Anuncio {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "anuncio_id")
     private int id;
 

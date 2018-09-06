@@ -1,9 +1,13 @@
 <!doctype html>
-<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div th:replace="fragments/header :: head">&nbsp;</div>
 <body class="hp-background-gray">
-<div th:replace="fragments/header :: header-sem-usuario">&nbsp;</div>
-<!--<div th:replace="fragments/header :: ${#authentication.principal.isAdmin()} ? 'header-usuario-logado' : 'header-sem-usuario'">&nbsp;</div>-->
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="fragments/header :: header-usuario-logado">&nbsp;</div>
+</div>
+<div sec:authorize="!isAuthenticated()">
+    <div th:replace="fragments/header :: header-sem-usuario">&nbsp;</div>
+</div>
 <div class="hp-search-home">
     <div class="container">
         <div class="hp-base-formulario mx-auto">

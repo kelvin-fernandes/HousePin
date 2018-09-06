@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "endereco")
 public class Endereco {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "endereco_id")
     private int id;
 
@@ -23,7 +23,7 @@ public class Endereco {
     @Column(name = "endereco_numero", nullable = false)
     private int numeroEndereco;
 
-    @Column(name = "complemento", nullable = false, length = 100)
+    @Column(name = "complemento", length = 100)
     private String complemento;
 
     @Column(name = "bairro", nullable = false, length = 100)
