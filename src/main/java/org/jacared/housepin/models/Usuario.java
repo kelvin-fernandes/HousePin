@@ -6,12 +6,13 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity(name = "usuario")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="usuario_tipo", discriminatorType = DiscriminatorType.STRING)
-public class Usuario {
+public class Usuario implements Serializable {
     @Id
     @Column(name = "usuario_cpf", length = 14)
 //    @NotEmpty(message = "Insira o seu CPF.")
@@ -38,7 +39,7 @@ public class Usuario {
     private String telefone;
 
     @Column(name = "situacao")
-    private int situacao;
+    private Integer situacao;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="endereco_id")
@@ -88,11 +89,11 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    public int getSituacao() {
+    public Integer getSituacao() {
         return situacao;
     }
 
-    public void setSituacao(int situacao) {
+    public void setSituacao(Integer situacao) {
         this.situacao = situacao;
     }
 

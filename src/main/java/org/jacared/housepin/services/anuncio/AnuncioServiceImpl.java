@@ -33,7 +33,7 @@ public class AnuncioServiceImpl implements AnuncioService {
 
     @Override
     public void adicionar(Anuncio anuncio) {
-        anuncioRepository.save(anuncio);
+        anuncioRepository.saveAndFlush(anuncio);
     }
 
     @Override

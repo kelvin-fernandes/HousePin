@@ -1,5 +1,5 @@
 INSERT INTO ENDERECO VALUES
-(1, 'Oliveira I', '79091-680', 'Campo Grande', NULL, NULL,  'Rua Antônio João Escobar', NULL, 255, 'MS');
+(1, 'Oliveira I', '79091-680', 'Campo Grande', NULL,  'Rua Antônio João Escobar', 255, 'MS');
 
 INSERT INTO ROLE VALUES
   (1, 'USER');

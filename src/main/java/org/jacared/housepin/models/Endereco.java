@@ -3,14 +3,15 @@ package org.jacared.housepin.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "endereco")
-public class Endereco {
+public class Endereco implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "endereco_id")
-    private int id;
+    private Integer id;
 
     @Column(name = "cep", length = 9)
 //    @NotEmpty(message = "Insira o seu CEP.")
@@ -20,8 +21,8 @@ public class Endereco {
     @Column(name = "logradouro", nullable = false, length = 100)
     private String logradouro;
 
-    @Column(name = "endereco_numero", nullable = false)
-    private int numeroEndereco;
+    @Column(name = "numero", nullable = false)
+    private Integer numero;
 
     @Column(name = "complemento", length = 100)
     private String complemento;
@@ -36,16 +37,18 @@ public class Endereco {
     private String uf;
 
     @Column(name = "latitude")
-    private double latitude;
+    @Transient
+    private Double latitude;
 
     @Column(name = "longitude")
-    private double longitude;
+    @Transient
+    private Double longitude;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -65,12 +68,12 @@ public class Endereco {
         this.logradouro = logradouro;
     }
 
-    public int getNumeroEndereco() {
-        return numeroEndereco;
+    public Integer getNumero() {
+        return numero;
     }
 
-    public void setNumeroEndereco(int numeroEndereco) {
-        this.numeroEndereco = numeroEndereco;
+    public void setNumero(Integer numero) {
+        this.numero = numero;
     }
 
     public String getComplemento() {
@@ -105,19 +108,19 @@ public class Endereco {
         this.uf = uf;
     }
 
-    public double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 }

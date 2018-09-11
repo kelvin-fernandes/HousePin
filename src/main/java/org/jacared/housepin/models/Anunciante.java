@@ -5,17 +5,18 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 @Entity
 @DiscriminatorValue("Anunciante")
-public class Anunciante extends Usuario {
+public class Anunciante extends Usuario implements Serializable {
 //    @NotEmpty(message = "Insira o seu CRECI.")
 //    @NotBlank(message = "Insira um CRECI válido.")
     @Column(name = "creci", unique = true, length = 20)
     private String creci;
 
     @Column(name = "isImobiliaria")
-    private boolean isImobiliaria;
+    private Boolean isImobiliaria;
 
     @Column(name = "cnpj", length = 18)
     private String cnpj;
@@ -31,11 +32,11 @@ public class Anunciante extends Usuario {
         this.creci = creci;
     }
 
-    public boolean isImobiliaria() {
+    public Boolean getImobiliaria() {
         return isImobiliaria;
     }
 
-    public void setImobiliaria(boolean imobiliaria) {
+    public void setImobiliaria(Boolean imobiliaria) {
         isImobiliaria = imobiliaria;
     }
 

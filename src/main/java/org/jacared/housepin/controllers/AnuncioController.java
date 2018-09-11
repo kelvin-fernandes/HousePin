@@ -6,6 +6,7 @@ import org.jacared.housepin.models.Usuario;
 import org.jacared.housepin.services.anuncio.AnuncioService;
 import org.jacared.housepin.services.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Controller
 public class AnuncioController {
@@ -46,9 +48,15 @@ public class AnuncioController {
 
     @RequestMapping(value = {"/anuncio/cadastro"}, method = RequestMethod.POST)
     public String cadastro(@ModelAttribute Anuncio anuncio) {
-        anuncio.setAnunciante(new Anunciante(){{setCpf("059.732.891-92");}});
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            return currentUserName;
+        }
+        Usuario anunciante = usuarioService.buscarUsuarioPorCpf("059.732.891-92").get();
+        anuncio.setAnunciante((Anunciante) anunciante);
         anuncioService.adicionar(anuncio);
-        return "/";
+        return "redirect:/";
     }
 
 //    @RequestMapping(value="/admin/home", method = RequestMethod.GET)
