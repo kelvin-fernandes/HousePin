@@ -10,14 +10,8 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
-import java.util.Optional;
 
 @Controller
 public class AnuncioController {
@@ -29,9 +23,26 @@ public class AnuncioController {
     private UsuarioService usuarioService;
 
     @RequestMapping(value = {"/anuncio/cadastro"}, method = RequestMethod.GET)
-    public ModelAndView cadastro() {
+    public ModelAndView cadastro(@RequestParam("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("anuncio",new Anuncio());
+        modelAndView.setViewName("anuncio/cadastro");
+        modelAndView.addObject("visualizando", false);
+        if(id == 0){
+            modelAndView.addObject("anuncio", new Anuncio());
+            return modelAndView;
+        }
+
+        Anuncio anuncio = anuncioService.buscarAnuncioPorId(id).get();
+        modelAndView.addObject("anuncio", anuncio);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/anuncio"}, method = RequestMethod.GET)
+    public ModelAndView visualizar(@RequestParam("id") int id) {
+        ModelAndView modelAndView = new ModelAndView();
+        Anuncio anuncio = anuncioService.buscarAnuncioPorId(id).get();
+        modelAndView.addObject("anuncio", anuncio);
+        modelAndView.addObject("visualizando", true);
         modelAndView.setViewName("anuncio/cadastro");
         return modelAndView;
     }
@@ -50,13 +61,13 @@ public class AnuncioController {
     public String cadastro(@ModelAttribute Anuncio anuncio) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            String currentUserName = authentication.getName();
-            return currentUserName;
+            Usuario anunciante = usuarioService.buscarUsuarioPorEmail(authentication.getName());
+            anuncio.setAnunciante((Anunciante) anunciante);
+            anuncioService.adicionar(anuncio);
+            return "redirect:/";
         }
-        Usuario anunciante = usuarioService.buscarUsuarioPorCpf("059.732.891-92").get();
-        anuncio.setAnunciante((Anunciante) anunciante);
-        anuncioService.adicionar(anuncio);
-        return "redirect:/";
+
+        return "/anuncio/cadastro";
     }
 
 //    @RequestMapping(value="/admin/home", method = RequestMethod.GET)

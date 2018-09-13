@@ -69,16 +69,16 @@
                     <div class="form-group col-md-3">
                         <label for="campo_endereco_cep">CEP</label>
                         <input type="text" class="form-control" id="campo_endereco_cep" placeholder="CEP" maxlength="9" required
-                               th:field="*{endereco.cep}">
+                               th:field="*{endereco.cep}" th:readonly="${visualizando}">
                     </div>
                     <div class="form-group col-md-5">
                         <label for="campo_endereco_cidade">Cidade</label>
                         <input type="text" class="form-control" id="campo_endereco_cidade" placeholder="Cidade" maxlength="255"
-                               required th:field="*{endereco.cidade}">
+                               required th:field="*{endereco.cidade}" th:readonly="${visualizando}">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="campo_endereco_estado">Estado</label>
-                        <select id="campo_endereco_estado" class="form-control" required th:field="*{endereco.uf}">
+                        <select id="campo_endereco_estado" class="form-control" required th:field="*{endereco.uf}" th:readonly="${visualizando}">
                             <option value="">Selecione</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
@@ -114,22 +114,22 @@
                     <div class="form-group col-md-3">
                         <label for="campo_endereco_bairro">Bairro</label>
                         <input type="text" class="form-control" id="campo_endereco_bairro" placeholder="Bairro" maxlength="255"
-                               required th:field="*{endereco.bairro}">
+                               required th:field="*{endereco.bairro}" th:readonly="${visualizando}">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="campo_endereco_rua">Rua</label>
                         <input type="text" class="form-control" id="campo_endereco_rua" placeholder="Rua" maxlength="255"
-                               required th:field="*{endereco.logradouro}">
+                               required th:field="*{endereco.logradouro}" th:readonly="${visualizando}">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="campo_endereco_complemento">Complemento (opcional)</label>
                         <input type="text" class="form-control" id="campo_endereco_complemento" placeholder="Complemento" maxlength="255"
-                               th:field="*{endereco.complemento}">
+                               th:field="*{endereco.complemento}" th:readonly="${visualizando}">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="campo_endereco_numero">Número</label>
                         <input type="text" class="form-control" id="campo_endereco_numero" placeholder="Número" min="1" required
-                               th:field="*{endereco.numero}">
+                               th:field="*{endereco.numero}" th:readonly="${visualizando}">
                     </div>
                 </div>
                 <!--<div class="form-row mt-1">-->
@@ -146,7 +146,7 @@
                 <div class="form-row mt-3">
                     <div class="form-group col-md-4">
                         <label for="campo_tipo_imovel">Tipo do Imóvel</label>
-                        <select class="form-control" id="campo_tipo_imovel" required>
+                        <select class="form-control" id="campo_tipo_imovel" required th:readonly="${visualizando}">
                             <option value="">Selecione</option>
                             <optgroup label="RESIDENCIAL">
                                 <option value="15">Apart Hotel / Flat / Loft</option>
@@ -181,7 +181,7 @@
                     </div>
                     <div class="form-group col-md-2">
                         <label for="campo_finalidade">Finalidade</label>
-                        <select class="form-control" id="campo_finalidade" required th:field="*{finalidade}">
+                        <select class="form-control" id="campo_finalidade" required th:field="*{finalidade}" th:readonly="${visualizando}">
                             <option value="">Selecione</option>
                             <option th:each="finalidade : ${T(org.jacared.housepin.utils.EnumFinalidade).values()}"
                                     th:value="${finalidade}"
@@ -191,7 +191,7 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="campo_condicao">Condições</label>
-                        <select class="form-control" id="campo_condicao" required th:field="*{condicao}">
+                        <select class="form-control" id="campo_condicao" required th:field="*{condicao}" th:readonly="${visualizando}">
                             <option value="">Selecione</option>
                             <option th:each="condicao : ${T(org.jacared.housepin.utils.EnumCondicao).values()}"
                                     th:value="${condicao}"
@@ -201,7 +201,7 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="campo_situacao">Situação do Anúncio</label>
-                        <select class="form-control" id="campo_situacao" required th:field="*{situacao}">
+                        <select class="form-control" id="campo_situacao" required th:field="*{situacao}" th:readonly="${visualizando}">
                             <option value="">Selecione</option>
                             <option th:each="logico : ${T(org.jacared.housepin.utils.EnumLogico).values()}"
                                     th:value="${logico}"
@@ -212,38 +212,40 @@
                     <div class="form-group col-md-3">
                         <label for="campo_valor">Valor</label>
                         <input type="number" class="form-control" id="campo_valor" placeholder="Valor" required
-                               th:field="*{valor}">
+                               th:field="*{valor}" th:readonly="${visualizando}">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="campo_condominio">Condomínio</label>
                         <input type="number" class="form-control" id="campo_condominio" placeholder="Condomínio" required
-                               th:field="*{condominio}">
+                               th:field="*{condominio}" th:readonly="${visualizando}">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="campo_iptu">IPTU</label>
                         <input type="number" class="form-control" id="campo_iptu" placeholder="IPTU" required
-                               th:field="*{iptu}">
+                               th:field="*{iptu}" th:readonly="${visualizando}">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="campo_area_total">Área Total</label>
                         <input type="number" class="form-control" id="campo_area_total" placeholder="Área Total" required
-                               th:field="*{areaTotal}">
+                               th:field="*{areaTotal}" th:readonly="${visualizando}">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="campo_area_util">Área Útil</label>
                         <input type="number" class="form-control" id="campo_area_util" placeholder="Área Útil" required
-                               th:field="*{areaUtil}">
+                               th:field="*{areaUtil}" th:readonly="${visualizando}">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="campo_descricao">Descrição</label>
-                        <textarea class="form-control" id="campo_descricao" rows="3" required th:field="*{descricao}"></textarea>
+                        <textarea class="form-control" id="campo_descricao" rows="3" required th:field="*{descricao}" th:readonly="${visualizando}"></textarea>
                     </div>
                     <div class="form-group col-md-12">
                         <label for="campo_observacoes">Observações</label>
-                        <textarea class="form-control" id="campo_observacoes" rows="3" required th:field="*{observacoes}"></textarea>
+                        <textarea class="form-control" id="campo_observacoes" rows="3" required th:field="*{observacoes}" th:readonly="${visualizando}"></textarea>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-4">Cadastrar</button>
+                <div th:if="${!visualizando}">
+                    <button type="submit" class="btn btn-primary mt-4">Cadastrar</button>
+                </div>
             </form>
         </div>
         <div class="col-xl-3 mb-4">

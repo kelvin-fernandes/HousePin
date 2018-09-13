@@ -64,21 +64,23 @@
     <div class="row">
 
         <div class="col-xl-3 mb-4" th:each="anuncio : ${anuncios}">
-            <div class="card border-0 hp-background-gray">
-                <img class="card-img-top rounded" src="/images/lista-imovel.png" alt="localização do imovel">
-                <div class="card-body p-0">
-                    <!--<span class="hp-font-size-12 hp-color-partial-gray font-weight-bold"-->
-                          <!--th:text="${anuncio.getTipoImovel().getNome()}"></span>-->
-                    <div class="hp-font-size-16 font-weight-bold hp-line-height-20"><span
-                            th:text="${anuncio.getEndereco().getBairro()}"></span><br><span
-                            th:text="${anuncio.getEndereco().getCidade()}"></span>
-                        - <span th:text="${anuncio.getEndereco().getUf()}"></span>
+            <a th:href="@{/anuncio(id=${anuncio.id})}">
+                <div class="card border-0 hp-background-gray">
+                    <img class="card-img-top rounded" src="/images/lista-imovel.png" alt="localização do imovel">
+                    <div class="card-body p-0">
+                        <!--<span class="hp-font-size-12 hp-color-partial-gray font-weight-bold"-->
+                              <!--th:text="${anuncio.getTipoImovel().getNome()}"></span>-->
+                        <div class="hp-font-size-16 font-weight-bold hp-line-height-20"><span
+                                th:text="${anuncio.getEndereco().getBairro()}"></span><br><span
+                                th:text="${anuncio.getEndereco().getCidade()}"></span>
+                            - <span th:text="${anuncio.getEndereco().getUf()}"></span>
+                        </div>
+                        <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold"><span
+                                th:text="${anuncio.getEndereco().getLogradouro()}"></span>, <span
+                                th:text="${anuncio.getEndereco().getNumero()}"></span></span>
                     </div>
-                    <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold"><span
-                            th:text="${anuncio.getEndereco().getLogradouro()}"></span>, <span
-                            th:text="${anuncio.getEndereco().getNumero()}"></span></span>
-                </div>'
-            </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>

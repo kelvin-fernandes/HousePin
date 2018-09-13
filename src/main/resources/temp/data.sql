@@ -4,9 +4,6 @@ INSERT INTO ENDERECO VALUES
 INSERT INTO ROLE VALUES
   (1, 'USER');
 
-INSERT INTO USUARIO VALUES
-  ('Anunciante', '059.732.891-92', 'kelvin@email.com', 'Kelvin', '123', 1, '', null, null, null, null, 1);
-
 INSERT INTO USUARIO_ROLE VALUES
   ('059.732.891-92', 1);
 
