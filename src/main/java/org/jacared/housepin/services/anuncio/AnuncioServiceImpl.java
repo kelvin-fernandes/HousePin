@@ -22,6 +22,11 @@ public class AnuncioServiceImpl implements AnuncioService {
     }
 
     @Override
+    public List<Anuncio> buscarAnunciosPorPesquisa(String search) {
+        return anuncioRepository.findAnunciosBySearch(search);
+    }
+
+    @Override
     public List<Anuncio> buscarTodos() {
         return anuncioRepository.findAll();
     }

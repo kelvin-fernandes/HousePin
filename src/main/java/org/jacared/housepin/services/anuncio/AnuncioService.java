@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface AnuncioService {
     Optional<Anuncio> buscarAnuncioPorId(int id);
+    List<Anuncio> buscarAnunciosPorPesquisa(String search);
     List<Anuncio> buscarTodos();
     List<Anuncio> buscarTodosOrdenadoPorDataDeInsercao();
     void adicionar(Anuncio anuncio);
