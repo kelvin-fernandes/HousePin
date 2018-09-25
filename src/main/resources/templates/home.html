@@ -49,11 +49,12 @@
                     <option value="10">Sitio</option>
                 </optgroup>
             </select>
+            <form id="formPesquisaHome" th:action="@{/pesquisa}" method="get">
+                <input type="" name="search" class="hp-input font-weight-bold ml-1 bg-white pl-3 pr-3"
+                       placeholder="Localidade" required/>
 
-            <input type="" name="" class="hp-input font-weight-bold ml-1 bg-white pl-3 pr-3" placeholder="Localidade"/>
-
-            <button type="button" class="btn font-weight-bold pl-4 pr-4 hp-button-search">Buscar</button>
-
+                <button type="submit" class="btn font-weight-bold pl-4 pr-4 hp-button-search">Buscar</button>
+            </form>
         </div>
     </div>
 </div>
@@ -69,7 +70,7 @@
                     <img class="card-img-top rounded" src="/images/lista-imovel.png" alt="localização do imovel">
                     <div class="card-body p-0">
                         <!--<span class="hp-font-size-12 hp-color-partial-gray font-weight-bold"-->
-                              <!--th:text="${anuncio.getTipoImovel().getNome()}"></span>-->
+                        <!--th:text="${anuncio.getTipoImovel().getNome()}"></span>-->
                         <div class="hp-font-size-16 font-weight-bold hp-line-height-20"><span
                                 th:text="${anuncio.getEndereco().getBairro()}"></span><br><span
                                 th:text="${anuncio.getEndereco().getCidade()}"></span>
