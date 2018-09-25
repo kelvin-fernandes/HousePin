@@ -1,33 +1,58 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<div th:replace="fragments/header :: head">&nbsp;</div>
+<body class="hp-background-gray">
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: header-sem-usuario">&nbsp;</div>
 
-<head>
-    <title>Spring Security Tutorial</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="application/javascript"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="application/javascript"></script>
-</head>
+<div class="container pt-4">
 
-<body>
-<form th:action="@{/usuario/cadastro}" method="get">
-    <button class="btn btn-md btn-warning btn-block" type="Submit">Cadastro</button>
-</form>
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-5">
 
-<div class="container">
-    <img th:src="@{/images/login.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo" />
-    <form th:action="@{/login}" method="POST" class="form-signin">
-        <h3 class="form-signin-heading" th:text="Welcome"></h3>
-        <br/>
-        <input type="email" id="email" name="email" th:placeholder="Email" class="form-control" /> <br/>
-        <input type="password"  th:placeholder="Password" id="password" name="senha" class="form-control" /> <br />
-        <div align="center" th:if="${param.error}">
-            <p style="font-size: 20; color: #FF1C19;">Email e/ou Senha inválidos, por favor verifique.</p>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
-    </form>
+            <h6 class="font-weight-bold mb-4">Entrar</h6>
+
+            <form th:action="@{/login}" method="POST" class="form-signin">
+                <div class="form-group mb-0">
+                    <input type="email" id="email" name="email" th:placeholder="E-mail" class="form-control"/> <br/>
+                </div>
+                <div class="form-group mb-0">
+                    <input type="password" th:placeholder="Senha" id="password" name="senha" class="form-control"/>
+                    <br/>
+                </div>
+
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${param.error}">
+                    <strong>E-mail</strong> e/ou <strong>Senha</strong> inválidos, por favor verifique.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <button class="btn btn-primary hp-round-button pl-5 pr-5" name="Submit" value="Acessar" type="Submit"
+                        th:text="Acessar"></button>
+            </form>
+        </div><!-- col -->
+
+        <div class="col col-lg-5">
+
+            <h6 class="font-weight-bold mb-4">Cadastrar</h6>
+
+            <form th:action="@{/usuario/cadastro}" method="GET" class="form-signin">
+                <div class="form-group mb-0">
+                    <input type="text" id="cadastronome" name="camponome" placeholder="Nome Completo"
+                           class="form-control"/> <br/>
+                </div>
+                <div class="form-group mb-0">
+                    <input type="text" id="cadastroemail" name="campoemail" th:placeholder="E-mail"
+                           class="form-control"/> <br/>
+                </div>
+                <button class="btn btn-primary hp-round-button pl-5 pr-5" name="Submit" value="Continuar" type="Submit"
+                        th:text="Continuar"></button>
+            </form>
+        </div><!-- col -->
+    </div>
+
+
 </div>
 <div th:replace="fragments/footer :: footer">&nbsp;</div>
 <!-- Optional JavaScript -->
