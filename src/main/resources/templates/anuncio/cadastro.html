@@ -1,10 +1,13 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <div th:replace="fragments/header :: head">&nbsp;</div>
 <body class="hp-background-gray">
-<div th:replace="fragments/header :: header-sem-usuario">&nbsp;</div>
-<!--<div th:replace="fragments/header :: ${#authentication.principal.isAdmin()} ? 'header-usuario-logado' : 'header-sem-usuario'">&nbsp;</div>-->
-
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="fragments/header :: header-usuario-logado">&nbsp;</div>
+</div>
+<div sec:authorize="!isAuthenticated()">
+    <div th:replace="fragments/header :: header-sem-usuario">&nbsp;</div>
+</div>
 <div class="hp-search-interno">
     <div class="container">
         <div class="hp-base-formulario mx-auto">
@@ -15,11 +18,37 @@
             </div>
             <select class="hp-select font-weight-bold ml-0 mr-0" name="state">
                 <option></option>
-                <optgroup label="RESIDENCIAL"><option value="15">Apart Hotel / Flat / Loft</option><option value="1">Apartamento</option><option value="14">Apto. Cobertura / Duplex</option><option value="11">Casa-Condomínio</option><option value="2">Casa-Térrea</option><option value="5">Kitnet</option><option value="6">Sobrado</option><option value="13">Sobrado-Condomínio</option><option value="4">Terreno</option><option value="12">Terreno-Condomínio</option></optgroup>
-                <optgroup label="COMERCIAL"><option value="16">Área</option><option value="17">Casa Comercial</option><option value="18">Galpão / Depósito</option><option value="3">Imóvel Comercial</option><option value="19">Indústria / Fábrica</option><option value="20">Ponto Comercial</option><option value="21">Pousada / Hotel / Motel</option><option value="22">Sala / Salão / Loja</option></optgroup>
-                <optgroup label="RURAL"><option value="7">Chácara</option><option value="8">Fazenda</option><option value="23">Haras</option><option value="9">Pesqueiro</option><option value="10">Sitio</option></optgroup>
+                <optgroup label="RESIDENCIAL">
+                    <option value="15">Apart Hotel / Flat / Loft</option>
+                    <option value="1">Apartamento</option>
+                    <option value="14">Apto. Cobertura / Duplex</option>
+                    <option value="11">Casa-Condomínio</option>
+                    <option value="2">Casa-Térrea</option>
+                    <option value="5">Kitnet</option>
+                    <option value="6">Sobrado</option>
+                    <option value="13">Sobrado-Condomínio</option>
+                    <option value="4">Terreno</option>
+                    <option value="12">Terreno-Condomínio</option>
+                </optgroup>
+                <optgroup label="COMERCIAL">
+                    <option value="16">Área</option>
+                    <option value="17">Casa Comercial</option>
+                    <option value="18">Galpão / Depósito</option>
+                    <option value="3">Imóvel Comercial</option>
+                    <option value="19">Indústria / Fábrica</option>
+                    <option value="20">Ponto Comercial</option>
+                    <option value="21">Pousada / Hotel / Motel</option>
+                    <option value="22">Sala / Salão / Loja</option>
+                </optgroup>
+                <optgroup label="RURAL">
+                    <option value="7">Chácara</option>
+                    <option value="8">Fazenda</option>
+                    <option value="23">Haras</option>
+                    <option value="9">Pesqueiro</option>
+                    <option value="10">Sitio</option>
+                </optgroup>
             </select>
-            <input type="" name="" class="hp-input font-weight-bold ml-0 bg-white pl-3 pr-3" placeholder="Localidade" />
+            <input type="" name="" class="hp-input font-weight-bold ml-0 bg-white pl-3 pr-3" placeholder="Localidade"/>
             <button type="button" class="btn font-weight-bold pl-4 pr-4 hp-button-search">Buscar</button>
         </div>
     </div>
@@ -30,21 +59,27 @@
 
     <div class="row">
         <div class="col-xl-9 mb-4">
-            <form th:action="@{/anuncio/cadastro}" th:object="${anuncio}" method="post">
+            <form id="formCadastroAnunciante" th:action="@{/anuncio/cadastro}" th:object="${anuncio}" method="post">
                 <div class="form-row">
+                    <input id="campo_id" th:field="*{id}" type="hidden"/>
+                    <input id="campo_endereco_id" th:field="*{endereco.id}" type="hidden"/>
+                    <input id="campo_data_insercao" th:field="*{dataInsercao}" type="hidden"/>
+                    <input id="campo_data_expiracao" th:field="*{dataExpiracao}" type="hidden"/>
+
                     <div class="form-group col-md-3">
-                        <label for="campo_cep">CEP</label>
-                        <input type="text" class="form-control" id="campo_cep" placeholder="CEP" th:field="*{endereco.cep}">
+                        <label for="campo_endereco_cep">CEP</label>
+                        <input type="text" class="form-control" id="campo_endereco_cep" placeholder="CEP" maxlength="9" required
+                               th:field="*{endereco.cep}" th:readonly="${visualizando}">
                     </div>
                     <div class="form-group col-md-5">
-                        <label for="campo_cidade">Cidade</label>
-                        <input type="text" class="form-control" id="campo_cidade" placeholder="Cidade" th:field="*{endereco.cidade}">
+                        <label for="campo_endereco_cidade">Cidade</label>
+                        <input type="text" class="form-control" id="campo_endereco_cidade" placeholder="Cidade" maxlength="255"
+                               required th:field="*{endereco.cidade}" th:readonly="${visualizando}">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="campo_estado">Estado</label>
-                        <select id="campo_estado" class="form-control">
-                            <option selected>Selecione</option>
-                            <option selected>Selecione</option>
+                        <label for="campo_endereco_estado">Estado</label>
+                        <select id="campo_endereco_estado" class="form-control" required th:field="*{endereco.uf}" th:readonly="${visualizando}">
+                            <option value="">Selecione</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
                             <option value="AP">Amapá</option>
@@ -76,57 +111,141 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="campo_bairro">Bairro</label>
-                        <input type="text" class="form-control" id="campo_bairro" placeholder="Bairro" th:field="*{endereco.bairro}">
+                    <div class="form-group col-md-3">
+                        <label for="campo_endereco_bairro">Bairro</label>
+                        <input type="text" class="form-control" id="campo_endereco_bairro" placeholder="Bairro" maxlength="255"
+                               required th:field="*{endereco.bairro}" th:readonly="${visualizando}">
                     </div>
-                    <div class="form-group col-md-5">
-                        <label for="campo_rua">Rua</label>
-                        <input type="text" class="form-control" id="campo_rua" placeholder="Rua" th:field="*{endereco.logradouro}">
+                    <div class="form-group col-md-4">
+                        <label for="campo_endereco_rua">Rua</label>
+                        <input type="text" class="form-control" id="campo_endereco_rua" placeholder="Rua" maxlength="255"
+                               required th:field="*{endereco.logradouro}" th:readonly="${visualizando}">
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="campo_numero">Número</label>
-                        <input type="text" class="form-control" id="campo_numero" placeholder="Número" th:field="*{endereco.numeroEndereco}">
+                        <label for="campo_endereco_complemento">Complemento (opcional)</label>
+                        <input type="text" class="form-control" id="campo_endereco_complemento" placeholder="Complemento" maxlength="255"
+                               th:field="*{endereco.complemento}" th:readonly="${visualizando}">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="campo_endereco_numero">Número</label>
+                        <input type="text" class="form-control" id="campo_endereco_numero" placeholder="Número" min="1" required
+                               th:field="*{endereco.numero}" th:readonly="${visualizando}">
                     </div>
                 </div>
-                <div class="form-row mt-1">
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="campo_compra" name="campo_finalidade" class="custom-control-input" checked="checked">
-                        <label class="custom-control-label" for="campo_compra">Compra</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="campo_venda" name="campo_finalidade" class="custom-control-input">
-                        <label class="custom-control-label" for="campo_venda">Venda</label>
-                    </div>
-                </div>'
+                <!--<div class="form-row mt-1">-->
+                    <!--<div class="custom-control custom-radio custom-control-inline">-->
+                        <!--<input type="radio" id="campo_compra" name="campo_finalidade" class="custom-control-input"-->
+                               <!--checked="checked">-->
+                        <!--<label class="custom-control-label" for="campo_compra">Compra</label>-->
+                    <!--</div>-->
+                    <!--<div class="custom-control custom-radio custom-control-inline">-->
+                        <!--<input type="radio" id="campo_venda" name="campo_finalidade" class="custom-control-input">-->
+                        <!--<label class="custom-control-label" for="campo_venda">Venda</label>-->
+                    <!--</div>-->
+                <!--</div>-->
                 <div class="form-row mt-3">
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-4">
                         <label for="campo_tipo_imovel">Tipo do Imóvel</label>
-                        <select class="form-control" id="campo_tipo_imovel">
+                        <select class="form-control" id="campo_tipo_imovel" required th:readonly="${visualizando}">
                             <option value="">Selecione</option>
-                            <optgroup label="RESIDENCIAL"><option value="15">Apart Hotel / Flat / Loft</option><option value="1">Apartamento</option><option value="14">Apto. Cobertura / Duplex</option><option value="11">Casa-Condomínio</option><option value="2">Casa-Térrea</option><option value="5">Kitnet</option><option value="6">Sobrado</option><option value="13">Sobrado-Condomínio</option><option value="4">Terreno</option><option value="12">Terreno-Condomínio</option></optgroup>
-                            <optgroup label="COMERCIAL"><option value="16">Área</option><option value="17">Casa Comercial</option><option value="18">Galpão / Depósito</option><option value="3">Imóvel Comercial</option><option value="19">Indústria / Fábrica</option><option value="20">Ponto Comercial</option><option value="21">Pousada / Hotel / Motel</option><option value="22">Sala / Salão / Loja</option></optgroup>
-                            <optgroup label="RURAL"><option value="7">Chácara</option><option value="8">Fazenda</option><option value="23">Haras</option><option value="9">Pesqueiro</option><option value="10">Sitio</option></optgroup>
+                            <optgroup label="RESIDENCIAL">
+                                <option value="15">Apart Hotel / Flat / Loft</option>
+                                <option value="1">Apartamento</option>
+                                <option value="14">Apto. Cobertura / Duplex</option>
+                                <option value="11">Casa-Condomínio</option>
+                                <option value="2">Casa-Térrea</option>
+                                <option value="5">Kitnet</option>
+                                <option value="6">Sobrado</option>
+                                <option value="13">Sobrado-Condomínio</option>
+                                <option value="4">Terreno</option>
+                                <option value="12">Terreno-Condomínio</option>
+                            </optgroup>
+                            <optgroup label="COMERCIAL">
+                                <option value="16">Área</option>
+                                <option value="17">Casa Comercial</option>
+                                <option value="18">Galpão / Depósito</option>
+                                <option value="3">Imóvel Comercial</option>
+                                <option value="19">Indústria / Fábrica</option>
+                                <option value="20">Ponto Comercial</option>
+                                <option value="21">Pousada / Hotel / Motel</option>
+                                <option value="22">Sala / Salão / Loja</option>
+                            </optgroup>
+                            <optgroup label="RURAL">
+                                <option value="7">Chácara</option>
+                                <option value="8">Fazenda</option>
+                                <option value="23">Haras</option>
+                                <option value="9">Pesqueiro</option>
+                                <option value="10">Sitio</option>
+                            </optgroup>
                         </select>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="campo_condicoes">Condições</label>
-                        <select class="form-control" id="campo_condicoes">
+                    <div class="form-group col-md-2">
+                        <label for="campo_finalidade">Finalidade</label>
+                        <select class="form-control" id="campo_finalidade" required th:field="*{finalidade}" th:readonly="${visualizando}">
                             <option value="">Selecione</option>
-                            <option value="">Novo</option>
-                            <option value="">Usado</option>
+                            <option th:each="finalidade : ${T(org.jacared.housepin.utils.EnumFinalidade).values()}"
+                                    th:value="${finalidade}"
+                                    th:text="${finalidade}">
+                            </option>
                         </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="campo_condicao">Condições</label>
+                        <select class="form-control" id="campo_condicao" required th:field="*{condicao}" th:readonly="${visualizando}">
+                            <option value="">Selecione</option>
+                            <option th:each="condicao : ${T(org.jacared.housepin.utils.EnumCondicao).values()}"
+                                    th:value="${condicao}"
+                                    th:text="${condicao}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="campo_situacao">Situação do Anúncio</label>
+                        <select class="form-control" id="campo_situacao" required th:field="*{situacao}" th:readonly="${visualizando}">
+                            <option value="">Selecione</option>
+                            <option th:each="logico : ${T(org.jacared.housepin.utils.EnumLogico).values()}"
+                                    th:value="${logico}"
+                                    th:text="${logico}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="campo_valor">Valor</label>
+                        <input type="number" class="form-control" id="campo_valor" placeholder="Valor" required
+                               th:field="*{valor}" th:readonly="${visualizando}">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="campo_condominio">Condomínio</label>
+                        <input type="number" class="form-control" id="campo_condominio" placeholder="Condomínio" required
+                               th:field="*{condominio}" th:readonly="${visualizando}">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="campo_iptu">IPTU</label>
+                        <input type="number" class="form-control" id="campo_iptu" placeholder="IPTU" required
+                               th:field="*{iptu}" th:readonly="${visualizando}">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="campo_area_total">Área Total</label>
+                        <input type="number" class="form-control" id="campo_area_total" placeholder="Área Total" required
+                               th:field="*{areaTotal}" th:readonly="${visualizando}">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="campo_area_util">Área Útil</label>
+                        <input type="number" class="form-control" id="campo_area_util" placeholder="Área Útil" required
+                               th:field="*{areaUtil}" th:readonly="${visualizando}">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="campo_descricao">Descrição</label>
-                        <textarea class="form-control" id="campo_descricao" rows="3"></textarea>
+                        <textarea class="form-control" id="campo_descricao" rows="3" required th:field="*{descricao}" th:readonly="${visualizando}"></textarea>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="campo_observacao">Observação</label>
-                        <textarea class="form-control" id="campo_observacao" rows="3"></textarea>
+                        <label for="campo_observacoes">Observações</label>
+                        <textarea class="form-control" id="campo_observacoes" rows="3" required th:field="*{observacoes}" th:readonly="${visualizando}"></textarea>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-4">Cadastrar</button>
+                <div th:if="${!visualizando}">
+                    <button type="submit" class="btn btn-primary mt-4">Cadastrar</button>
+                </div>
             </form>
         </div>
         <div class="col-xl-3 mb-4">
@@ -134,7 +253,9 @@
                 <img class="card-img-top rounded" src="/images/lista-imovel.png" alt="localização do imovel">
                 <div class="card-body p-0">
                     <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">APARTAMENTO</span>
-                    <div class="hp-font-size-16 font-weight-bold hp-line-height-20">Jardim Universitário<br>Dourados - MS</div>
+                    <div class="hp-font-size-16 font-weight-bold hp-line-height-20">Jardim Universitário<br>Dourados -
+                        MS
+                    </div>
                     <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">Rua Visconde Bastos, 358</span>
                 </div>
             </div>
@@ -142,7 +263,9 @@
                 <img class="card-img-top rounded" src="/images/lista-imovel.png" alt="localização do imovel">
                 <div class="card-body p-0">
                     <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">APARTAMENTO</span>
-                    <div class="hp-font-size-16 font-weight-bold hp-line-height-20">Jardim Universitário<br>Dourados - MS</div>
+                    <div class="hp-font-size-16 font-weight-bold hp-line-height-20">Jardim Universitário<br>Dourados -
+                        MS
+                    </div>
                     <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">Rua Visconde Bastos, 358</span>
                 </div>
             </div>
@@ -150,28 +273,25 @@
                 <img class="card-img-top rounded" src="/images/lista-imovel.png" alt="localização do imovel">
                 <div class="card-body p-0">
                     <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">APARTAMENTO</span>
-                    <div class="hp-font-size-16 font-weight-bold hp-line-height-20">Jardim Universitário<br>Dourados - MS</div>
+                    <div class="hp-font-size-16 font-weight-bold hp-line-height-20">Jardim Universitário<br>Dourados -
+                        MS
+                    </div>
                     <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">Rua Visconde Bastos, 358</span>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<footer class="page-footer hp-background-red text-white pt-4 pb-4 mt-4">
-    <div class="container">
-        <div class="row">
-            <div class="col text-left hp-font-size-14 font-weight-bold">Copyright © 2018, House Pin. Todos os direitos
-                reservados.
-            </div>
-            <div class="col text-right hp-font-size-14 font-weight-bold"><a href="" class="text-white">TERMOS DE USO</a><a
-                    href="" class="text-white ml-4">POLÍTICA DE PRIVACIDADE</a></div>
-        </div>
-    </div>
-</footer>
 <div th:replace="fragments/footer :: footer">&nbsp;</div>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <div th:replace="fragments/scripts :: scripts">&nbsp;</div>
+<script type="application/javascript">
+    // $(document).ready(function () {
+    //     // $('#campo_cep').mask('00000-000');
+    //
+    //     // $("#formCadastroAnunciante").bind('ajax:complete', function(e) {
+    //     //     console.log(e);
+    //     // });
+    // });
+</script>
 </body>
 </html>

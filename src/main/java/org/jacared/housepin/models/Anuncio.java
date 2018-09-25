@@ -1,5 +1,6 @@
 package org.jacared.housepin.models;
 
+import org.hibernate.annotations.Cascade;
 import org.jacared.housepin.utils.EnumCondicao;
 import org.jacared.housepin.utils.EnumFinalidade;
 import org.jacared.housepin.utils.EnumLogico;
@@ -9,18 +10,20 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "anuncio")
-public class Anuncio {
+public class Anuncio implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "anuncio_id")
-    private int id;
+    private Integer id;
 
 //    @NotNull(message = "Escolha a situação atual do anúncio.")
     @Enumerated(EnumType.STRING)
@@ -28,21 +31,21 @@ public class Anuncio {
     private EnumLogico situacao;
 
     @Column(name = "data_insercao", columnDefinition = "timestamp DEFAULT CURRENT_TIMESTAMP()")
-    private Timestamp dataInsercao;
+    private Timestamp dataInsercao = new Timestamp(Calendar.getInstance().getTime().getTime());
 
     @Column(name = "data_expiracao")
-    private Date dataExpiracao;
+    private Date dataExpiracao = new Date(Calendar.getInstance().getTime().getTime());
 
 //    @NotEmpty(message = "Insira um valor para o anúncio.")
 //    @NotBlank(message = "Insira um valor válido.")
     @Column(name = "valor", nullable = false)
-    private double valor;
+    private Double valor;
 
     @Column(name = "condominio")
-    private double condominio;
+    private Double condominio;
 
     @Column(name = "iptu")
-    private double iptu;
+    private Double iptu;
 
     @Column(name = "observacoes")
     private String observacoes;
@@ -60,24 +63,24 @@ public class Anuncio {
     private EnumFinalidade finalidade;
 
     @Column(name = "area_total")
-    private double areaTotal;
+    private Double areaTotal;
 
     @Column(name = "area_util")
-    private double areaUtil;
+    private Double areaUtil;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="endereco_id", nullable = false)
-    private Endereco endereco;
+    private Endereco endereco = new Endereco();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="usuario_cpf", nullable = false)
-    private Anunciante anunciante;
+    private Anunciante anunciante = new Anunciante();
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -105,27 +108,27 @@ public class Anuncio {
         this.dataExpiracao = dataExpiracao;
     }
 
-    public double getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
-    public double getCondominio() {
+    public Double getCondominio() {
         return condominio;
     }
 
-    public void setCondominio(double condominio) {
+    public void setCondominio(Double condominio) {
         this.condominio = condominio;
     }
 
-    public double getIptu() {
+    public Double getIptu() {
         return iptu;
     }
 
-    public void setIptu(double iptu) {
+    public void setIptu(Double iptu) {
         this.iptu = iptu;
     }
 
@@ -161,19 +164,19 @@ public class Anuncio {
         this.finalidade = finalidade;
     }
 
-    public double getAreaTotal() {
+    public Double getAreaTotal() {
         return areaTotal;
     }
 
-    public void setAreaTotal(double areaTotal) {
+    public void setAreaTotal(Double areaTotal) {
         this.areaTotal = areaTotal;
     }
 
-    public double getAreaUtil() {
+    public Double getAreaUtil() {
         return areaUtil;
     }
 
-    public void setAreaUtil(double areaUtil) {
+    public void setAreaUtil(Double areaUtil) {
         this.areaUtil = areaUtil;
     }
 

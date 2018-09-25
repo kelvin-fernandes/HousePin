@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<div th:replace="fragments/header :: head">&nbsp;</div>
+<body class="hp-background-gray">
+
+<div th:replace="fragments/header :: header-sem-usuario">&nbsp;</div>
+
+<div class="container pt-4">
+
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-5">
+
+            <h6 class="font-weight-bold mb-4">Entrar</h6>
+
+            <form th:action="@{/login}" method="POST" class="form-signin">
+                <div class="form-group mb-0">
+                    <input type="email" id="email" name="email" th:placeholder="E-mail" class="form-control"/> <br/>
+                </div>
+                <div class="form-group mb-0">
+                    <input type="password" th:placeholder="Senha" id="password" name="senha" class="form-control"/>
+                    <br/>
+                </div>
+
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${param.error}">
+                    <strong>E-mail</strong> e/ou <strong>Senha</strong> inválidos, por favor verifique.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <button class="btn btn-primary hp-round-button pl-5 pr-5" name="Submit" value="Acessar" type="Submit"
+                        th:text="Acessar"></button>
+            </form>
+        </div><!-- col -->
+
+        <div class="col col-lg-5">
+
+            <h6 class="font-weight-bold mb-4">Cadastrar</h6>
+
+            <form th:action="@{/usuario/cadastro}" method="GET" class="form-signin">
+                <div class="form-group mb-0">
+                    <input type="text" id="cadastronome" name="camponome" placeholder="Nome Completo"
+                           class="form-control"/> <br/>
+                </div>
+                <div class="form-group mb-0">
+                    <input type="text" id="cadastroemail" name="campoemail" th:placeholder="E-mail"
+                           class="form-control"/> <br/>
+                </div>
+                <button class="btn btn-primary hp-round-button pl-5 pr-5" name="Submit" value="Continuar" type="Submit"
+                        th:text="Continuar"></button>
+            </form>
+        </div><!-- col -->
+    </div>
+
+
+</div>
+<div th:replace="fragments/footer :: footer">&nbsp;</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<div th:replace="fragments/scripts :: scripts">&nbsp;</div>
+</body>
+</html>

@@ -2,21 +2,21 @@ package org.jacared.housepin.utils;
 
 public enum EnumCondicao {
 
-    NOVO("Novo"),
+    NOVO,
 
-    USADO("Usado");
+    USADO;
 
-    private final String name;
-
-    private EnumCondicao(String name) {
-        this.name = name;
-    }
-
-    public boolean equalsName(String otherName) {
-        return name.equals(otherName);
-    }
-
-    public String toString(){
-        return this.name;
-    }
+//    private final String name;
+//
+//    private EnumCondicao(String name) {
+//        this.name = name;
+//    }
+//
+//    public boolean equalsName(String otherName) {
+//        return name.equals(otherName);
+//    }
+//
+//    public String toString(){
+//        return this.name;
+//    }
 }
