@@ -8,52 +8,6 @@
 <div sec:authorize="!isAuthenticated()">
     <div th:replace="fragments/header :: header-sem-usuario">&nbsp;</div>
 </div>
-<div class="hp-search-interno">
-    <div class="container">
-        <div class="hp-base-formulario mx-auto">
-            <div class="hp-finalidade font-weight-bold mr-1">
-                <span class="item marcado" data-value="comprar">Comprar</span>
-                <span class="item" data-value="alugar">Alugar</span>
-                <input type="hidden" name="finalidade" value="comprar">
-            </div>
-            <select class="hp-select font-weight-bold ml-0 mr-0" name="state">
-                <option></option>
-                <optgroup label="RESIDENCIAL">
-                    <option value="15">Apart Hotel / Flat / Loft</option>
-                    <option value="1">Apartamento</option>
-                    <option value="14">Apto. Cobertura / Duplex</option>
-                    <option value="11">Casa-Condomínio</option>
-                    <option value="2">Casa-Térrea</option>
-                    <option value="5">Kitnet</option>
-                    <option value="6">Sobrado</option>
-                    <option value="13">Sobrado-Condomínio</option>
-                    <option value="4">Terreno</option>
-                    <option value="12">Terreno-Condomínio</option>
-                </optgroup>
-                <optgroup label="COMERCIAL">
-                    <option value="16">Área</option>
-                    <option value="17">Casa Comercial</option>
-                    <option value="18">Galpão / Depósito</option>
-                    <option value="3">Imóvel Comercial</option>
-                    <option value="19">Indústria / Fábrica</option>
-                    <option value="20">Ponto Comercial</option>
-                    <option value="21">Pousada / Hotel / Motel</option>
-                    <option value="22">Sala / Salão / Loja</option>
-                </optgroup>
-                <optgroup label="RURAL">
-                    <option value="7">Chácara</option>
-                    <option value="8">Fazenda</option>
-                    <option value="23">Haras</option>
-                    <option value="9">Pesqueiro</option>
-                    <option value="10">Sitio</option>
-                </optgroup>
-            </select>
-            <input type="" name="" class="hp-input font-weight-bold ml-0 bg-white pl-3 pr-3" placeholder="Localidade"/>
-            <button type="button" class="btn font-weight-bold pl-4 pr-4 hp-button-search">Buscar</button>
-        </div>
-    </div>
-</div>
-
 <div class="container pt-4">
     <h6 class="font-weight-bold mb-4">Anúncio</h6>
 

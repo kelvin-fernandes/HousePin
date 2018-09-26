@@ -1,0 +1,96 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<div th:replace="fragments/header :: head">&nbsp;</div>
+<body class="hp-background-gray">
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="fragments/header :: header-usuario-logado">&nbsp;</div>
+</div>
+<div sec:authorize="!isAuthenticated()">
+    <div th:replace="fragments/header :: header-sem-usuario">&nbsp;</div>
+</div>
+<div class="container pt-4">
+    <h6 class="font-weight-bold mb-4">Anúncio</h6>
+
+    <div class="row">
+        <div class="col-xl-9 mb-4" th:object="${anuncio}">
+
+            <div class="container">
+                <div class="row h6 text-secondary">
+                    <span th:text="*{endereco.cidade}"></span> - <span th:text="*{endereco.uf}"></span>
+                </div>
+                <div class="row h3 text-primary">
+                    <span th:text="*{endereco.logradouro}"></span>, <span th:text="*{endereco.numero}"></span>
+                </div>
+
+                <div class="row text-dark">
+                    Tipo do Imóvel:
+                    <br>Finalidade:
+                    <br>Condições:
+                    <br>Situação do Anúncio:
+                    <br>Valor:
+                    <br>Condomínio:
+                    <br>IPTU:
+                    <br>Área Total:
+                    <br>Área Útil:
+                    <br>
+                    <br>Descrição:
+                    <br>Conteúdo disponível em breve.
+                    <br>
+                    <br>Observações:
+                    <br>Conteúdo disponível em breve.
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <div class="col-xl-3 mb-4">
+            <div class="card border-0 mb-4 hp-background-gray">
+                <img class="card-img-top rounded" src="/images/lista-imovel.png" alt="localização do imovel">
+                <div class="card-body p-0">
+                    <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">APARTAMENTO</span>
+                    <div class="hp-font-size-16 font-weight-bold hp-line-height-20">Jardim Universitário<br>Dourados -
+                        MS
+                    </div>
+                    <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">Rua Visconde Bastos, 358</span>
+                </div>
+            </div>
+            <div class="card border-0 mb-4 hp-background-gray">
+                <img class="card-img-top rounded" src="/images/lista-imovel.png" alt="localização do imovel">
+                <div class="card-body p-0">
+                    <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">APARTAMENTO</span>
+                    <div class="hp-font-size-16 font-weight-bold hp-line-height-20">Jardim Universitário<br>Dourados -
+                        MS
+                    </div>
+                    <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">Rua Visconde Bastos, 358</span>
+                </div>
+            </div>
+            <div class="card border-0 mb-4 hp-background-gray">
+                <img class="card-img-top rounded" src="/images/lista-imovel.png" alt="localização do imovel">
+                <div class="card-body p-0">
+                    <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">APARTAMENTO</span>
+                    <div class="hp-font-size-16 font-weight-bold hp-line-height-20">Jardim Universitário<br>Dourados -
+                        MS
+                    </div>
+                    <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold">Rua Visconde Bastos, 358</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer">&nbsp;</div>
+<div th:replace="fragments/scripts :: scripts">&nbsp;</div>
+<script type="application/javascript">
+    // $(document).ready(function () {
+    //     // $('#campo_cep').mask('00000-000');
+    //
+    //     // $("#formCadastroAnunciante").bind('ajax:complete', function(e) {
+    //     //     console.log(e);
+    //     // });
+    // });
+</script>
+</body>
+</html>
