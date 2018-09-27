@@ -4,6 +4,8 @@ import org.jacared.housepin.models.Anuncio;
 import org.jacared.housepin.repositories.AnuncioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,8 +34,8 @@ public class AnuncioServiceImpl implements AnuncioService {
     }
 
     @Override
-    public List<Anuncio> buscarTodosOrdenadoPorDataDeInsercao() {
-        return anuncioRepository.findAllOrderByDescDataInsercao();
+    public Page<Anuncio> buscarTodosOrdenadoPorDataDeInsercao(Pageable pageable) {
+        return anuncioRepository.findAllOrderByDescDataInsercao(pageable);
     }
 
     @Override

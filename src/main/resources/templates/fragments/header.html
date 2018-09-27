@@ -15,18 +15,14 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white d-flex justify-content-end hp-h-100">
         <div class="container">
             <a href="#" class="mr-4"><img src="/images/logo.svg" alt="House Pin - Sua referência em imóveis"/></a>
-            <button class="navbar-toggler border-white" type="button" data-toggle="collapse" data-target="#menu"
-                    aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-white" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse navbar-toggler-lg bg-white text-lg-right pl-4 border-left" id="menu">
                 <ul class="navbar-nav font-weight-bold">
-                    <li class="nav-item mr-2"><a class="nav-link hp-font-size-14 hp-color-gray" href="novidades.html">NOVIDADES</a>
-                    </li>
-                    <li class="nav-item mr-2"><a class="nav-link hp-font-size-14 hp-color-gray" href="promocoes.html">PROMOÇÕES</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link hp-font-size-14 hp-color-gray"
-                                            href="duvidas-frequentes.html">DÚVIDAS FREQUENTES</a></li>
+                    <li class="nav-item mr-2"><a class="nav-link hp-font-size-14 hp-color-gray" href="novidades.html">NOVIDADES</a></li>
+                    <li class="nav-item mr-2"><a class="nav-link hp-font-size-14 hp-color-gray" href="promocoes.html">PROMOÇÕES</a></li>
+                    <li class="nav-item"><a class="nav-link hp-font-size-14 hp-color-gray" href="duvidas-frequentes.html">DÚVIDAS FREQUENTES</a></li>
                 </ul>
             </div>
             <div class="justify-content-end">
@@ -109,9 +105,9 @@
                        class="btn font-weight-bold hp-font-size-14 text-secondary mr-0 bg-white hp-hover-text-entrar hp-color-gray hp-usuario-logado-opcoes"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span sec:authentication="principal.username"></span></a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a th:href="@{/anuncio/cadastro(id=0)}"><button class="dropdown-item" type="button">Anunciar</button></a>
+                        <a th:href="@{/anuncio/cadastro(id=0)}" class="dropdown-item">Anunciar</a>
                         <button class="dropdown-item" type="button">Meu Perfil</button>
-                        <button class="dropdown-item" type="button">Meus Anúncios</button>
+                        <a th:href="@{/anuncio/meus-anuncios}" class="dropdown-item">Meus Anúncios</a>
                         <a th:href="@{/logout}"><button class="dropdown-item" type="button">Sair da Conta</button></a>
                     </div>
                 </div>
