@@ -43,7 +43,7 @@ public class AnuncioController {
         Anuncio anuncio = anuncioService.buscarAnuncioPorId(id).get();
         modelAndView.addObject("anuncio", anuncio);
         modelAndView.addObject("visualizando", true);
-        modelAndView.setViewName("anuncio/cadastro");
+        modelAndView.setViewName("anuncio/detalhes");
         return modelAndView;
     }
 

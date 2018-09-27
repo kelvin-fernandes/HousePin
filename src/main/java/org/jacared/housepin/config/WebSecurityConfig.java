@@ -51,7 +51,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/usuario/**").permitAll()
                 .antMatchers("/anuncio").permitAll()
                 .antMatchers("/pesquisa").permitAll()
-                .antMatchers("/anuncio/**").hasAuthority("USER").anyRequest()
+                .antMatchers("/anuncio/detalhes").permitAll()
+                .antMatchers("/anuncio/cadastro").hasAuthority("USER").anyRequest()
+
 //                .antMatchers("/anuncio/**").permitAll().anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
