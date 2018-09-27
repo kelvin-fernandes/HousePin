@@ -1,6 +1,8 @@
 package org.jacared.housepin.repositories;
 
 import org.jacared.housepin.models.Anuncio;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -17,5 +19,5 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Integer> {
     List<Anuncio> findAnunciosBySearch(String search);
 
     @Query("SELECT a FROM Anuncio a ORDER BY a.dataInsercao desc")
-    List<Anuncio> findAllOrderByDescDataInsercao();
+    Page<Anuncio> findAllOrderByDescDataInsercao(Pageable pageable);
 }

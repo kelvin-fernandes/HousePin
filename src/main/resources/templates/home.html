@@ -11,48 +11,45 @@
 <div class="hp-search-home">
     <div class="container">
         <div class="hp-base-formulario mx-auto">
-            <div class="hp-finalidade font-weight-bold">
-                <span class="item marcado" data-value="comprar">Comprar</span>
-                <span class="item" data-value="alugar">Alugar</span>
-                <input type="hidden" name="finalidade" value="comprar">
-            </div>
-
-            <select class="hp-select font-weight-bold ml-1" name="state">
-                <option></option>
-                <optgroup label="RESIDENCIAL">
-                    <option value="15">Apart Hotel / Flat / Loft</option>
-                    <option value="1">Apartamento</option>
-                    <option value="14">Apto. Cobertura / Duplex</option>
-                    <option value="11">Casa-Condomínio</option>
-                    <option value="2">Casa-Térrea</option>
-                    <option value="5">Kitnet</option>
-                    <option value="6">Sobrado</option>
-                    <option value="13">Sobrado-Condomínio</option>
-                    <option value="4">Terreno</option>
-                    <option value="12">Terreno-Condomínio</option>
-                </optgroup>
-                <optgroup label="COMERCIAL">
-                    <option value="16">Área</option>
-                    <option value="17">Casa Comercial</option>
-                    <option value="18">Galpão / Depósito</option>
-                    <option value="3">Imóvel Comercial</option>
-                    <option value="19">Indústria / Fábrica</option>
-                    <option value="20">Ponto Comercial</option>
-                    <option value="21">Pousada / Hotel / Motel</option>
-                    <option value="22">Sala / Salão / Loja</option>
-                </optgroup>
-                <optgroup label="RURAL">
-                    <option value="7">Chácara</option>
-                    <option value="8">Fazenda</option>
-                    <option value="23">Haras</option>
-                    <option value="9">Pesqueiro</option>
-                    <option value="10">Sitio</option>
-                </optgroup>
-            </select>
             <form id="formPesquisaHome" th:action="@{/pesquisa}" method="get">
-                <input type="" name="search" class="hp-input font-weight-bold ml-1 bg-white pl-3 pr-3"
-                       placeholder="Localidade" required/>
-
+                <div class="hp-finalidade font-weight-bold">
+                    <span class="item marcado" data-value="comprar">Comprar</span>
+                    <span class="item" data-value="alugar">Alugar</span>
+                    <input type="hidden" name="finalidade" value="comprar">
+                </div>
+                <select class="hp-select font-weight-bold ml-1" name="state">
+                    <option></option>
+                    <optgroup label="RESIDENCIAL">
+                        <option value="15">Apart Hotel / Flat / Loft</option>
+                        <option value="1">Apartamento</option>
+                        <option value="14">Apto. Cobertura / Duplex</option>
+                        <option value="11">Casa-Condomínio</option>
+                        <option value="2">Casa-Térrea</option>
+                        <option value="5">Kitnet</option>
+                        <option value="6">Sobrado</option>
+                        <option value="13">Sobrado-Condomínio</option>
+                        <option value="4">Terreno</option>
+                        <option value="12">Terreno-Condomínio</option>
+                    </optgroup>
+                    <optgroup label="COMERCIAL">
+                        <option value="16">Área</option>
+                        <option value="17">Casa Comercial</option>
+                        <option value="18">Galpão / Depósito</option>
+                        <option value="3">Imóvel Comercial</option>
+                        <option value="19">Indústria / Fábrica</option>
+                        <option value="20">Ponto Comercial</option>
+                        <option value="21">Pousada / Hotel / Motel</option>
+                        <option value="22">Sala / Salão / Loja</option>
+                    </optgroup>
+                    <optgroup label="RURAL">
+                        <option value="7">Chácara</option>
+                        <option value="8">Fazenda</option>
+                        <option value="23">Haras</option>
+                        <option value="9">Pesqueiro</option>
+                        <option value="10">Sitio</option>
+                    </optgroup>
+                </select>
+                <input type="text" name="search" class="hp-input font-weight-bold ml-1 bg-white pl-3 pr-3" placeholder="Localidade" required/>
                 <button type="submit" class="btn font-weight-bold pl-4 pr-4 hp-button-search">Buscar</button>
             </form>
         </div>
@@ -60,10 +57,10 @@
 </div>
 
 <div class="container pt-4">
+
     <h6 class="font-weight-bold mb-4">Mais de 300 imóveis</h6>
 
     <div class="row">
-
         <div class="col-xl-3 mb-4" th:each="anuncio : ${anuncios}">
             <a th:href="@{/anuncio(id=${anuncio.id})}">
                 <div class="card border-0 hp-background-gray">
@@ -71,19 +68,35 @@
                     <div class="card-body p-0">
                         <!--<span class="hp-font-size-12 hp-color-partial-gray font-weight-bold"-->
                         <!--th:text="${anuncio.getTipoImovel().getNome()}"></span>-->
-                        <div class="hp-font-size-16 font-weight-bold hp-line-height-20 mt-2 text-dark"><span
-                                th:text="${anuncio.getEndereco().getBairro()}"></span><br><span
-                                th:text="${anuncio.getEndereco().getCidade()}"></span>
-                            - <span th:text="${anuncio.getEndereco().getUf()}"></span>
+                        <div class="hp-font-size-16 font-weight-bold hp-line-height-20 mt-2 text-dark"><span th:text="${anuncio.getEndereco().getBairro()}"></span><br><span th:text="${anuncio.getEndereco().getCidade()}"></span> - <span th:text="${anuncio.getEndereco().getUf()}"></span>
                         </div>
-                        <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold"><span
-                                th:text="${anuncio.getEndereco().getLogradouro()}"></span>, <span
-                                th:text="${anuncio.getEndereco().getNumero()}"></span></span>
+                        <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold"><span th:text="${anuncio.getEndereco().getLogradouro()}"></span>, <span th:text="${anuncio.getEndereco().getNumero()}"></span></span>
                     </div>
                 </div>
             </a>
         </div>
     </div>
+
+    <nav aria-label="Page navigation example" th:if="${anuncios.totalPages > 0}" th:with="currentUrl=(${@currentUrlWithoutParam.apply('page')})">
+        <ul class="pagination justify-content-center">
+            <li th:class="${anuncios.number == 0} ? 'page-item disabled' : 'page-item'">
+                <a class="page-link" th:href="@{${currentUrl}(page=${anuncios.number - 1})}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li th:each="pageNumber : ${pageNumbers}" th:class="${pageNumber == anuncios.number} ? 'page-item active' : 'page-item'">
+                <a class="page-link" th:text="${pageNumber + 1}"  th:href="@{${currentUrl}(page=${pageNumber})}"></a>
+            </li>
+            <li th:class="${anuncios.totalPages == (anuncios.number + 1)} ? 'page-item disabled' : 'page-item'">
+                <a class="page-link" th:href="@{${currentUrl}(page=${anuncios.number + 1})}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
 </div>
 <div th:replace="fragments/footer :: footer">&nbsp;</div>
 <!-- Optional JavaScript -->
