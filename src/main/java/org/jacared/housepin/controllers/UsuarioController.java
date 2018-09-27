@@ -2,6 +2,7 @@ package org.jacared.housepin.controllers;
 
 import org.jacared.housepin.models.Anunciante;
 import org.jacared.housepin.models.Anuncio;
+import org.jacared.housepin.services.anunciante.AnuncianteService;
 import org.jacared.housepin.services.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +20,11 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @RequestMapping(value="/usuario/cadastro", method = RequestMethod.GET)
-    public ModelAndView cadastroAnunciante(@RequestParam("camponome") String nome, @RequestParam("campoemail") String email){
+    @Autowired
+    private AnuncianteService anuncianteService;
+
+    @RequestMapping(value = "/usuario/cadastro", method = RequestMethod.GET)
+    public ModelAndView cadastroAnunciante(@RequestParam("camponome") String nome, @RequestParam("campoemail") String email) {
         ModelAndView modelAndView = new ModelAndView();
         Anunciante anunciante = new Anunciante();
         anunciante.setNome(nome);
@@ -34,19 +38,31 @@ public class UsuarioController {
     public ModelAndView cadastroAnunciante(@ModelAttribute Anunciante anunciante) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/usuario/cadastro");
-        Anunciante anuncianteExists = (Anunciante) usuarioService.buscarUsuarioPorEmail(anunciante.getEmail());
+        Anunciante anuncianteExists = anuncianteService.buscarAnunciantePorCpf(anunciante.getCpf());
         if (anuncianteExists != null) {
+            modelAndView.addObject("errorMessage", "Já existe um usuário registrado com o CPF fornecido.");
+            modelAndView.addObject("anunciante", anunciante);
+            return modelAndView;
+        }
+
+        anuncianteExists = anuncianteService.buscarAnunciantePorEmail(anunciante.getEmail());
+        if(anuncianteExists != null) {
             modelAndView.addObject("errorMessage", "Já existe um usuário registrado com o email fornecido.");
             modelAndView.addObject("anunciante", anunciante);
             return modelAndView;
         }
-//        if (bindingResult.hasErrors()) {
-//            modelAndView.setViewName("usuario/cadastro");
-//        } else {
-            usuarioService.adicionar(anunciante);
-            modelAndView.addObject("successMessage", "Anunciante foi registrado com sucesso");
-            modelAndView.addObject("anunciante", new Anunciante());
-//        }
+
+        anuncianteExists = anuncianteService.buscarAnunciantePorCreci(anunciante.getCreci());
+        if(anuncianteExists != null) {
+            modelAndView.addObject("errorMessage", "Já existe um usuário registrado com o CRECI fornecido.");
+            modelAndView.addObject("anunciante", anunciante);
+            return modelAndView;
+        }
+
+        anuncianteService.adicionar(anunciante);
+        modelAndView.addObject("successMessage", "Anunciante foi registrado com sucesso");
+        modelAndView.addObject("anunciante", new Anunciante());
+
         return modelAndView;
     }
 }

@@ -28,9 +28,9 @@ public class HomeController {
         modelAndView.addObject("anuncios", anuncios);
         modelAndView.setViewName("home");
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        System.out.println(currentPrincipalName);
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String currentPrincipalName = authentication.getName();
+//        System.out.println(currentPrincipalName);
 
         return modelAndView;
     }

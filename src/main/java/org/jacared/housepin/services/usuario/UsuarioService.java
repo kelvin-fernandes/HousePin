@@ -1,13 +1,13 @@
 package org.jacared.housepin.services.usuario;
 
+import org.jacared.housepin.models.Anunciante;
 import org.jacared.housepin.models.Usuario;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UsuarioService {
     Usuario buscarUsuarioPorEmail(String email);
-    Optional<Usuario> buscarUsuarioPorCpf(String cpf);
+    Usuario buscarUsuarioPorCpf(String cpf) throws RuntimeException;
     List<Usuario> buscarTodos();
     void adicionar(Usuario usuario);
     void atualizar(Usuario usuario);

@@ -1,6 +1,6 @@
 package org.jacared.housepin.services.usuario;
 
-import org.jacared.housepin.models.Role;
+import org.jacared.housepin.models.Anunciante;
 import org.jacared.housepin.models.Usuario;
 import org.jacared.housepin.repositories.RoleRepository;
 import org.jacared.housepin.repositories.UsuarioRepository;
@@ -31,8 +31,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Optional<Usuario> buscarUsuarioPorCpf(String cpf) {
-        return usuarioRepository.findById(cpf);
+    public Usuario buscarUsuarioPorCpf(String cpf) throws RuntimeException{
+        Optional<Usuario> usuario = usuarioRepository.findById(cpf);
+        return usuario.orElseThrow(RuntimeException::new);
     }
 
     @Override
