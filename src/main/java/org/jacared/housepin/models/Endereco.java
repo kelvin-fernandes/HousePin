@@ -123,4 +123,9 @@ public class Endereco implements Serializable {
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s, %d - %s - %s/%s", logradouro, numero, bairro, cidade, uf);
+    }
 }

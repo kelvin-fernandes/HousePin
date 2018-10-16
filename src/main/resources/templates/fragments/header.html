@@ -107,6 +107,8 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a th:href="@{/anuncio/cadastro(id=0)}" class="dropdown-item">Anunciar</a>
                         <button class="dropdown-item" type="button">Meu Perfil</button>
+                        <a th:href="@{/relatorio(finalidade='venda')}" class="dropdown-item">Relatório de Venda</a>
+                        <a th:href="@{/relatorio(finalidade='aluguel')}" class="dropdown-item">Relatório de Aluguel</a>
                         <a th:href="@{/anuncio/meus-anuncios}" class="dropdown-item">Meus Anúncios</a>
                         <a th:href="@{/logout}"><button class="dropdown-item" type="button">Sair da Conta</button></a>
                     </div>

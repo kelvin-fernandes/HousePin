@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" lang="pt-br">
+<div th:replace="fragments/header :: head">&nbsp;</div>
+<body>
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="fragments/header :: header-usuario-logado">&nbsp;</div>
+</div>
+<div sec:authorize="!isAuthenticated()">
+    <div th:replace="fragments/header :: header-sem-usuario">&nbsp;</div>
+</div>
+<div class="container">
+    <h3>Relatório de <span th:text="${finalidade}"></span></h3>
+    <p>Anunciante: <span th:text="${nomeUsuario}"></span></p>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Título</th>
+            <th scope="col">Valor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="anuncio : ${anuncios}">
+            <th scope="row">
+                <span th:text="${anuncio.getEndereco().getLogradouro()}"></span>,
+                <span th:text="${anuncio.getEndereco().getNumero()}"></span> -
+                <span th:text="${anuncio.getEndereco().getCidade()}"></span> /
+                <span th:text="${anuncio.getEndereco().getUf()}"></span> -
+                <span th:text="${anuncio.getEndereco().getBairro()}"></span></th>
+            <td>R<span th:text="${#numbers.formatCurrency(anuncio.getValor())}"></span></td>
+        </tr>
+        <tr>
+            <th scope="row" class="text-right">Total</th>
+            <td>R<span th:text="${#numbers.formatCurrency(valorTotal)}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="fragments/footer :: footer">&nbsp;</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<div th:replace="fragments/scripts :: scripts">&nbsp;</div>
+</body>
+</html>
