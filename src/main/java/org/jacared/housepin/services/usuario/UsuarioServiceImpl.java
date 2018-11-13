@@ -31,9 +31,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario buscarUsuarioPorCpf(String cpf) throws RuntimeException{
-        Optional<Usuario> usuario = usuarioRepository.findById(cpf);
-        return usuario.orElseThrow(RuntimeException::new);
+    public Usuario buscarUsuarioPorCpf(String cpf) {
+        return usuarioRepository.findById(cpf).isPresent() ? usuarioRepository.findById(cpf).get() : null;
     }
 
     @Override

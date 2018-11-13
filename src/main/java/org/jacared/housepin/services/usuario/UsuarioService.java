@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UsuarioService {
     Usuario buscarUsuarioPorEmail(String email);
-    Usuario buscarUsuarioPorCpf(String cpf) throws RuntimeException;
+    Usuario buscarUsuarioPorCpf(String cpf);
     List<Usuario> buscarTodos();
     void adicionar(Usuario usuario);
     void atualizar(Usuario usuario);

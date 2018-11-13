@@ -19,13 +19,27 @@ $(function(){
     	placeholder: "Tipo do imóvel"
 	});
 
-    //
     $( "#campo_pessoa_juridica").click(function() {
-    	$('.hp-grupo-pessoa-fisica').removeClass('d-none')
+        $('.hp-grupo-pessoa-fisica').removeClass('d-none');
+    });
+
+	$( "#campo_pessoa_fisica").click(function() {
+	    $('.hp-grupo-pessoa-fisica').addClass('d-none');
 	});
 
-    //
-	$( "#campo_pessoa_fisica").click(function() {
-    	$('.hp-grupo-pessoa-fisica').addClass('d-none')
+	$( "#campo_particular").click(function() {
+	    $('.hp-grupo-imobiliaria-corretor').addClass('d-none');
+	    $('.hp-grupo-usuario').removeClass('d-none');
 	});
+	$( "#campo_imobiliaria_corretor").click(function() {
+        $('.hp-grupo-imobiliaria-corretor').removeClass('d-none');
+        $('.hp-grupo-usuario').addClass('d-none');
+	});
+	$('.hp-favorito').click(function () {
+        if(!$(this).hasClass('ativo')){
+            $(this).addClass('ativo');
+        }else{
+            $(this).removeClass('ativo');
+        }
+    });
 });

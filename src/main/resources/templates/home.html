@@ -50,7 +50,7 @@
                 </optgroup>
             </select>
 
-            <form id="remote" th:action="@{/pesquisa}" method="get">
+            <form id="remote" th:action="@{/pesquisa}" method="get" style="width: 310px;float: right;">
                 <input type="text" name="search" class="hp-input font-weight-bold ml-1 bg-white pl-3 pr-3 typeahead" placeholder="Localidade" required/>
                 <button type="submit" class="btn font-weight-bold pl-4 pr-4 hp-button-search">Buscar</button>
             </form>
@@ -64,7 +64,8 @@
     <h6 class="font-weight-bold mb-4">Mais de 300 imóveis</h6>
 
     <div class="row">
-        <div class="col-xl-3 mb-4" th:each="anuncio : ${anuncios}">
+        <div class="col-xl-3 mb-4 position-relative" th:each="anuncio : ${anuncios}">
+            <div class="hp-favorito" sec:authorize="isAuthenticated()"></div>
             <a th:href="@{/anuncio(id=${anuncio.id})}">
                 <div class="card border-0 hp-background-gray">
                     <img class="card-img-top rounded" src="/images/lista-imovel.png" alt="localização do imovel">

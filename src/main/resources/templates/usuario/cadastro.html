@@ -28,7 +28,18 @@
                 </button>
             </div>
 
-            <form th:action="@{/usuario/cadastro}" th:object="${anunciante}" method="post">
+            <div class="mb-3">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="campo_particular" name="campo_particular_imobiliaria_corretor" class="custom-control-input" checked="checked">
+                    <label class="custom-control-label" for="campo_particular">Particular</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="campo_imobiliaria_corretor" name="campo_particular_imobiliaria_corretor" class="custom-control-input">
+                    <label class="custom-control-label" for="campo_imobiliaria_corretor">Imobiliária/Corretor</label>
+                </div>
+            </div>
+
+            <form th:action="@{/cadastro/anunciante}" th:object="${anunciante}" name="corretorImobiliaria" id="corretorImobiliaria" method="post" class="hp-grupo-imobiliaria-corretor d-none">
                 <div class="mb-3">
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="campo_pessoa_fisica" name="campo_pessoa" class="custom-control-input" checked="checked">
@@ -133,6 +144,36 @@
                         <input type="text" class="form-control" id="campo_numero" placeholder="Número" th:field="*{endereco.numero}">
                     </div>
                 </div>
+                <button type="submit" class="btn btn-primary hp-round-button pl-5 pr-5">Cadastrar</button>
+            </form>
+
+            <form th:action="@{/cadastro/usuario}" th:object="${usuario}" name="usuarioPropietario" id="usuarioPropietario" method="post" class="hp-grupo-usuario">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="campo_usuario_nome_completo">Nome Completo</label>
+                        <input type="text" class="form-control" id="campo_usuario_nome_completo" placeholder="Nome Completo" th:field="*{nome}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="campo_usuario_cpf">CPF</label>
+                        <input type="text" class="form-control cpf" id="campo_usuario_cpf" placeholder="CPF" th:field="*{cpf}">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="campo_usuario_telefone">Telefone</label>
+                        <input type="text" class="form-control telefone" id="campo_usuario_telefone" placeholder="Telefone" th:field="*{telefone}">
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="campo_usuario_email">E-mail</label>
+                        <input type="email" class="form-control" id="campo_usuario_email" placeholder="E-mail" th:field="*{email}">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="campo_usuario_senha">Senha</label>
+                        <input type="password" class="form-control" id="campo_usuario_senha" placeholder="Senha" th:field="*{senha}">
+                    </div>
+                </div>
+
                 <button type="submit" class="btn btn-primary hp-round-button pl-5 pr-5">Cadastrar</button>
             </form>
         </div>
