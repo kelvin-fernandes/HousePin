@@ -19,6 +19,10 @@
 .hp-line-height-14 { line-height:14px !important; }
 .hp-line-height-12 { line-height:12px !important; }
 .hp-line-height-10 { line-height:10px !important; }
+.hp-right-10 { right:10px !important; }
+
+.hp-favorito { width:24px;height:24px;cursor: pointer;background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfiCwcACxpjyTkwAAABVklEQVQ4y5VTP0vDQBT/3RmXoGAd7FQhrVGESgcN4l6yC12cCg79AkL3fgA/h6Odu3SqULRDJ9F4l6og6hAzSIdq8xyUJOaf8U3H+/173LtjSCji8ggonzEP+Up0JEkSnSSMxVt3a9yGCmDqaRuvUZTHBbwNFQCg8naOBN8fyRk81T8lI5Ig1tl1SABMabvyEBFcLRY06FwnHToMrEQsXVzCYpZnwXqz9z6Y3aJTLOW873d2wuQzijnpAPDC2egfdLARnzUxzs0fz5oMeFz97NFuHnfFLDkcKDmoY/gnf4h6yflZnObOTQwy6YO5qblAaHFik92k82mrcvt98p8GLWcFBKgvWNjJEgRokFDNTKjGBMgUBKjit8IjeTgHcBiyi47UV4IXRV2vVm6UG16Nur6g2Ffwu+SFJEmyJ4xwVxiyJ0mSHd/SfcFu2ftJ408OxPGT/6m+AK6Ib3yGeG38AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTExLTA3VDAwOjExOjI2KzAxOjAwO0PbeAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0xMS0wN1QwMDoxMToyNiswMTowMEoeY8QAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC');position:absolute !important;z-index:999 !important;display: block !important;right:26px;top: 10px !important; }
+.hp-favorito.ativo { background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAjVBMVEUAAAD//4D/20P/2UP/3Eb/2kT/20P/3UT/zDP/10P/2kT/20T/2UT/2kX/2kT/2kT/2kT/2kT/2kT/2UD/2kP/1Uf/2kT/30D/2kT/20n/20T/3Eb/2kX/2kT/2kT/2kT/2kT/v0D/2kT/20T/3Eb/2kT/2UP/2UX/4Uv/2kb/20P/20T/5k3/2kQAAAC32BZwAAAALXRSTlMAAluBFvWMHgUmS3CVuu9m8+i1FNASzBDIDsQzYLjl/awE/K8sxjXFETc5YgrRFFEtAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAAN1wAADdcBQiibeAAAAAd0SU1FB+ILBwAQLAVFZzMAAAC0SURBVCjPbZFXEoMwDERF6L33XkKq7n+9BAhmTLQ/lvbNeiQbgEm4XASgJCKKlC/JiLJEAAW/UugAGVkDRESVNyCrzNJ0w7RsB39ybMs0dA3A9ZCQ54KPpHwIaBBAGFF+FALEyb+fxMtYaXb2s3QbOC94v8j3VXQe6GzHkgclAxUPqvMD7joesuZBzUCz9m3XtWvR7H4/LO04AUzjUg39Tq6I9ryVs414Y1fd3cfxZc/Xezk+E8s0Dn/TTx8AAAAldEVYdGRhdGU6Y3JlYXRlADIwMTgtMTEtMDdUMDA6MTY6NDQrMDE6MDCIb9ivAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE4LTExLTA3VDAwOjE2OjQ0KzAxOjAw+TJgEwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=') !important; }
 
 .hp-hover-button-anunciar:hover { background-color:#F23362 !important;color:#FFF !important;border-color:#F23362 !important; }
 .hp-hover-text-entrar:hover { color:#303438 !important;}
@@ -140,3 +144,107 @@
 .select2-container--classic .select2-results__option--highlighted[aria-selected] { background-color:#3875d7;color:white; }
 .select2-container--classic .select2-results__group { cursor:default;display:block;padding:6px; }
 .select2-container--classic.select2-container--open .select2-dropdown { order-color:#5897fb; }
+
+.tt-menu,
+.gist {
+    text-align: left;
+}
+
+.typeahead,
+.tt-query,
+.tt-hint {
+    /*
+    width: 396px;
+    height: 30px;
+    padding: 8px 12px;
+    font-size: 24px;
+    line-height: 30px;
+    border: 2px solid #ccc;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    outline: none;
+    */
+}
+
+.typeahead {
+    background-color: #fff;
+}
+
+.typeahead:focus {
+    border: 2px solid #0097cf;
+}
+
+.tt-query {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-hint {
+    color: #999
+}
+
+.tt-menu {
+    width: 422px;
+    margin: 12px 0;
+    padding: 8px 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+    padding: 3px 20px;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.tt-suggestion:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: #0097cf;
+}
+
+.tt-suggestion.tt-cursor {
+    color: #fff;
+    background-color: #0097cf;
+
+}
+
+.tt-suggestion p {
+    margin: 0;
+}
+
+.gist {
+    font-size: 14px;
+}
+
+/* example specific styles */
+/* ----------------------- */
+
+#custom-templates .empty-message {
+    padding: 5px 10px;
+    text-align: center;
+}
+
+#multiple-datasets .league-name {
+    margin: 0 20px 5px 20px;
+    padding: 3px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+#scrollable-dropdown-menu .tt-menu {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#rtl-support .tt-menu {
+    text-align: right;
+}

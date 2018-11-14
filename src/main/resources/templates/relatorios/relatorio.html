@@ -1,0 +1,126 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" lang="pt-br">
+<div th:replace="fragments/header :: head">&nbsp;</div>
+<body>
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="fragments/header :: header-usuario-logado">&nbsp;</div>
+</div>
+<div sec:authorize="!isAuthenticated()">
+    <div th:replace="fragments/header :: header-sem-usuario">&nbsp;</div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h3>Relatório de <span th:text="${finalidade}"></span></h3>
+            <p>Anunciante: <span th:text="${nomeUsuario}"></span></p>
+        </div>
+        <div class="col-6">
+            <form>
+                <div class="custom-control custom-radio custom-control-inline"
+                     th:each="formato : ${T(org.jacared.housepin.models.relatorio.EnumExportacao.Formato).values()}">
+                    <input type="radio" th:id="${'campo_formato_' + formato}" name="formato"
+                           class="custom-control-input" th:value="${formato}">
+                    <label class="custom-control-label" th:for="${'campo_formato_' + formato}"
+                           th:text="${formato}"></label>
+                </div>
+
+                <div class="custom-control custom-checkbox custom-control-inline"
+                     th:each="template : ${T(org.jacared.housepin.models.relatorio.EnumExportacao.Componente).values()}">
+                    <input type="checkbox" th:id="${'campo_template_' + template}" name="template"
+                           class="custom-control-input" th:value="${template}">
+                    <label class="custom-control-label" th:for="${'campo_template_' + template}"
+                           th:text="${template}"></label>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Título</th>
+            <th scope="col">Valor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="anuncio : ${anuncios}">
+            <th scope="row">
+                <span th:text="${anuncio.getEndereco().getLogradouro()}"></span>,
+                <span th:text="${anuncio.getEndereco().getNumero()}"></span> -
+                <span th:text="${anuncio.getEndereco().getCidade()}"></span> /
+                <span th:text="${anuncio.getEndereco().getUf()}"></span> -
+                <span th:text="${anuncio.getEndereco().getBairro()}"></span></th>
+            <td>R<span th:text="${#numbers.formatCurrency(anuncio.getValor())}"></span></td>
+        </tr>
+        <tr>
+            <th scope="row" class="text-right">Total</th>
+            <td>R<span th:text="${#numbers.formatCurrency(valorTotal)}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="modal-exportacao" class="modal">
+    <form>
+        <div class="modal-content">
+            <h6>Template de Exportação</h6>
+            <small>Escolha arque os que de deja exportar.</small>
+            <fieldset class="checkbox-group required">
+                <ul id="sortable">
+                    <li th:each="componente : ${T(org.jacared.housepin.models.relatorio.EnumExportacao.Componente).values()}">
+                        <label>
+                            <input name="template-compoment" type="checkbox" th:value="${componente}">
+                            <span th:text="${componente}"></span>
+                        </label>
+                    </li>
+                </ul>
+            </fieldset>
+            <h6>Formato</h6>
+            <small>Selecione o formato do documento de exportação.</small>
+            <div>
+                <ul>
+                    <li th:each="formato : ${T(.domain.relatorio.Exportar.Formato).values()}">
+                        <label>
+                            <input name="formato" required type="radio" th:value="${formato}">
+                            <span th:text="${formato}"></span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="waves-effect waves-green btn-flat" type="submit">Exportar</button>
+        </div>
+    </form>
+</div>
+
+<div th:replace="fragments/footer :: footer">&nbsp;</div>
+<div th:replace="fragments/scripts :: scripts">&nbsp;</div>
+<script>
+    $(document).ready(function () {
+        $('.modal').modal();
+    });
+
+    let tipo = '';
+    const baseUrl = '/relatorios/exportar?tipo=';
+
+    function modal(t) {
+        tipo = t;
+        $('.modal').modal('open');
+    }
+
+    $('#modal-exportacao form').submit((event) => {
+        event.preventDefault();
+        if ($('.checkbox-group.required :checkbox:checked').length === 0) {
+            return;
+        }
+        let template = [];
+        $("input[type=checkbox]:checked").each(function () {
+            template.push($(this).val());
+        });
+        let formato = $('input[type=radio]:checked').val();
+        window.location.href = `${baseUrl}${tipo}&template=${template.join(',')}&formato=${formato}`;
+    });
+</script>
+</body>
+</html>

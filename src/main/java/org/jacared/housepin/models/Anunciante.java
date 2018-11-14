@@ -1,11 +1,19 @@
 package org.jacared.housepin.models;
 
+import org.jacared.housepin.models.relatorio.Relatorio;
+import org.jacared.housepin.utils.EnumFinalidade;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @DiscriminatorValue("Anunciante")
@@ -23,6 +31,10 @@ public class Anunciante extends Usuario implements Serializable {
 
     @Column(name = "razao_social")
     private String razaoSocial;
+
+    @OneToMany(mappedBy = "anunciante")
+    @Column()
+    private Set<Anuncio> anuncios = new LinkedHashSet<>();
 
     public String getCreci() {
         return creci;
@@ -54,5 +66,25 @@ public class Anunciante extends Usuario implements Serializable {
 
     public void setRazaoSocial(String razaoSocial) {
         this.razaoSocial = razaoSocial;
+    }
+
+    public Set<Anuncio> getAnuncios() { return anuncios; }
+
+    public void setAnuncios(Set<Anuncio> anuncios) {
+        this.anuncios = anuncios;
+    }
+
+    @Transactional()
+    public Relatorio getRelatorioDeAnunciosDeVendas() {
+        return new Relatorio(this.getAnuncios().stream()
+                .filter((a) -> a.getFinalidade() == EnumFinalidade.VENDA)
+                .collect(Collectors.toList()), EnumFinalidade.VENDA, this);
+    }
+
+    @Transactional()
+    public Relatorio getRelatorioDeAnunciosDeAluguel() {
+        return new Relatorio(this.getAnuncios().stream()
+                .filter((a) -> a.getFinalidade() == EnumFinalidade.ALUGUEL)
+                .collect(Collectors.toList()), EnumFinalidade.ALUGUEL, this);
     }
 }

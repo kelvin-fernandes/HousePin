@@ -2,6 +2,8 @@ package org.jacared.housepin.services.anuncio;
 
 import org.jacared.housepin.models.Anuncio;
 import org.jacared.housepin.repositories.AnuncioRepository;
+import org.jacared.housepin.utils.Busca;
+import org.jacared.housepin.utils.EnumFinalidade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -9,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service("anuncioService")
@@ -23,9 +26,24 @@ public class AnuncioServiceImpl implements AnuncioService {
         return anuncioRepository.findById(id);
     }
 
+//    @Override
+//    public List<Anuncio> buscarAnunciosPorPesquisa(String search) {
+//        return anuncioRepository.findAnunciosBySearch(search);
+//    }
+
     @Override
-    public List<Anuncio> buscarAnunciosPorPesquisa(String search) {
-        return anuncioRepository.findAnunciosBySearch(search);
+    public String[][] buscarAnunciosPorPesquisa(String search) {
+        return anuncioRepository.findAllByEndereco(search);
+    }
+
+    @Override
+    public List<Anuncio> buscarAnunciosDoAnunciantePorFinalidade(String emailAnunciante, EnumFinalidade finalidade) {
+        return anuncioRepository.findAllByEmailAnuncianteAndFinalidade(emailAnunciante, finalidade);
+    }
+
+    @Override
+    public Page<Anuncio> buscarAnunciosPorPesquisaPaginado(String search, Pageable pageable) {
+        return anuncioRepository.findAnunciosBySearch(search, pageable);
     }
 
     @Override

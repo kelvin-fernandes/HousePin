@@ -2,6 +2,7 @@ package org.jacared.housepin.controllers;
 
 import org.jacared.housepin.models.Anunciante;
 import org.jacared.housepin.models.Anuncio;
+import org.jacared.housepin.models.Usuario;
 import org.jacared.housepin.services.anunciante.AnuncianteService;
 import org.jacared.housepin.services.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,44 @@ public class UsuarioController {
         Anunciante anunciante = new Anunciante();
         anunciante.setNome(nome);
         anunciante.setEmail(email);
+
+        Usuario usuario = new Usuario();
+        usuario.setNome(nome);
+        usuario.setEmail(email);
+
         modelAndView.addObject("anunciante", anunciante);
-        modelAndView.setViewName("usuario/cadastro");
+        modelAndView.addObject("usuario", usuario);
+        modelAndView.setViewName("/usuario/cadastro");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/usuario/cadastro", method = RequestMethod.POST)
+    @RequestMapping(value = "/cadastro/usuario", method = RequestMethod.POST)
+    public ModelAndView cadastroUsuario(@ModelAttribute Usuario usuario) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/usuario/cadastro");
+        Usuario usuarioExists = usuarioService.buscarUsuarioPorCpf(usuario.getCpf());
+        if (usuarioExists != null) {
+            modelAndView.addObject("errorMessage", "Já existe um usuário registrado com o CPF fornecido.");
+            modelAndView.addObject("usuario", usuario);
+            return modelAndView;
+        }
+
+        usuarioExists = usuarioService.buscarUsuarioPorEmail(usuario.getEmail());
+        if(usuarioExists != null) {
+            modelAndView.addObject("errorMessage", "Já existe um usuário registrado com o email fornecido.");
+            modelAndView.addObject("usuario", usuario);
+            return modelAndView;
+        }
+
+        usuarioService.adicionar(usuario);
+        modelAndView.addObject("successMessage", "Usuário foi registrado com sucesso");
+        modelAndView.addObject("usuario", new Usuario());
+        modelAndView.addObject("anunciante", new Anunciante());
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/cadastro/anunciante", method = RequestMethod.POST)
     public ModelAndView cadastroAnunciante(@ModelAttribute Anunciante anunciante) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/usuario/cadastro");
@@ -61,6 +94,7 @@ public class UsuarioController {
 
         anuncianteService.adicionar(anunciante);
         modelAndView.addObject("successMessage", "Anunciante foi registrado com sucesso");
+        modelAndView.addObject("usuario", new Usuario());
         modelAndView.addObject("anunciante", new Anunciante());
 
         return modelAndView;
