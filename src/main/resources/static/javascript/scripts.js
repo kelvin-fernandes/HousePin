@@ -36,10 +36,28 @@ $(function(){
         $('.hp-grupo-usuario').addClass('d-none');
 	});
 	$('.hp-favorito').click(function () {
+
+        var anuncio_id = $(this).data('anuncio_id');
+        var usuario_id = '050.861.491-00';
+	    var acao = '';
+
         if(!$(this).hasClass('ativo')){
             $(this).addClass('ativo');
+            var acao = 'adicionar';
         }else{
             $(this).removeClass('ativo');
+            var acao = 'remover';
         }
+
+        $.ajax({
+            type: "POST",
+            data: { anuncio_id: anuncio_id,usuario_id:usuario_id },
+            url: "http://localhost:8080/anuncio/favoritar/",
+            dataType: "json",
+            success: function(result) {
+                console.log(result);
+            }
+        });
+
     });
 });

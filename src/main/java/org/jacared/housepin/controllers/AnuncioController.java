@@ -142,6 +142,17 @@ public class AnuncioController {
     }
 
     @Transactional
+    @GetMapping(value = {"/anuncio/favoritar"})
+    public ModelAndView favoritar(int anuncio_id,String usuario_id) {
+
+
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        return modelAndView;
+    }
+
+    @Transactional
     @ResponseBody
     @GetMapping(value = "/relatorio/exportar")
     public String exportar(HttpServletResponse response,

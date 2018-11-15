@@ -65,7 +65,7 @@
 
     <div class="row">
         <div class="col-xl-3 mb-4 position-relative" th:each="anuncio : ${anuncios}">
-            <div class="hp-favorito" sec:authorize="isAuthenticated()"></div>
+            <div class="hp-favorito" sec:authorize="isAuthenticated()" th:attr="data-anuncio_id=${anuncio.getId()}"></div>
             <a th:href="@{/anuncio(id=${anuncio.id})}">
                 <div class="card border-0 hp-background-gray">
                     <img class="card-img-top rounded" src="/images/lista-imovel.png" alt="localização do imovel">
