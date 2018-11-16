@@ -12,4 +12,5 @@ public interface UsuarioService {
     void adicionar(Usuario usuario);
     void atualizar(Usuario usuario);
     void deletar(Usuario usuario);
+    void adicionarAnuncioFavorito(int anuncio_id, Usuario usuario);
 }

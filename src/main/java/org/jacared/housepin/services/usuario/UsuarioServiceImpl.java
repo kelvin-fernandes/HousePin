@@ -2,6 +2,7 @@ package org.jacared.housepin.services.usuario;
 
 import org.jacared.housepin.models.Anunciante;
 import org.jacared.housepin.models.Usuario;
+import org.jacared.housepin.repositories.AnuncioRepository;
 import org.jacared.housepin.repositories.RoleRepository;
 import org.jacared.housepin.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Qualifier("usuarioRepository")
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Qualifier("anuncioRepository")
+    @Autowired
+    private AnuncioRepository anuncioRepository;
 
     @Qualifier("roleRepository")
     @Autowired
@@ -56,5 +61,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public void deletar(Usuario usuario) {
         usuarioRepository.delete(usuario);
+    }
+
+    @Overrides
+    public void adicionarAnuncioFavorito(int anuncio_id, Usuario usuario) {
+        usuario.setFavoritos(new HashSet<>(Collections.singletonList(anuncioRepository.findById(anuncio_id))));
+        usuarioRepository.saveAndFlush(usuario);
     }
 }

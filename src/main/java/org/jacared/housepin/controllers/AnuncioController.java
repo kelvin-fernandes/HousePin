@@ -21,8 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import static org.jacared.housepin.utils.EnumFinalidade.*;
 
@@ -142,15 +144,19 @@ public class AnuncioController {
     }
 
     @Transactional
-    @GetMapping(value = {"/anuncio/favoritar"})
-    public ModelAndView favoritar(int anuncio_id,String usuario_id) {
+    @ResponseBody
+    @RequestMapping(value = "/anuncio/favoritar", method = RequestMethod.POST, produces = "application/json")
+    public Map<String, Boolean> favoritar(int anuncio_id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            Usuario usuario = usuarioService.buscarUsuarioPorEmail(authentication.getName());
+        }
 
-
-
-        ModelAndView modelAndView = new ModelAndView();
-
-        return modelAndView;
+        return Collections.singletonMap("success", true);
     }
+
+
+
 
     @Transactional
     @ResponseBody

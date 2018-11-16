@@ -49,6 +49,10 @@ public class Usuario implements Serializable {
     @JoinTable(name = "usuario_role", joinColumns = @JoinColumn(name = "usuario_cpf"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "anuncio_favorito", joinColumns = @JoinColumn(name = "usuario_cpf"), inverseJoinColumns = @JoinColumn(name = "anuncio_id"))
+    private Set<Anuncio> favoritos;
+
     public String getCpf() {
         return cpf;
     }
@@ -111,5 +115,13 @@ public class Usuario implements Serializable {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Set<Anuncio> getFavoritos() {
+        return favoritos;
+    }
+
+    public void setFavoritos(Set<Anuncio> favoritos) {
+        this.favoritos = favoritos;
     }
 }

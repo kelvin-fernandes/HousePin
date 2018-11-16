@@ -38,7 +38,6 @@ $(function(){
 	$('.hp-favorito').click(function () {
 
         var anuncio_id = $(this).data('anuncio_id');
-        var usuario_id = '050.861.491-00';
 	    var acao = '';
 
         if(!$(this).hasClass('ativo')){
@@ -51,7 +50,7 @@ $(function(){
 
         $.ajax({
             type: "POST",
-            data: { anuncio_id: anuncio_id,usuario_id:usuario_id },
+            data: { anuncio_id: anuncio_id },
             url: "http://localhost:8080/anuncio/favoritar/",
             dataType: "json",
             success: function(result) {
