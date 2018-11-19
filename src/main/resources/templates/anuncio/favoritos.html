@@ -9,29 +9,30 @@
     <div th:replace="fragments/header :: header-sem-usuario">&nbsp;</div>
 </div>
 <div class="container pt-4">
-    <h6 class="font-weight-bold mb-4">Anúncio</h6>
+    <h6 class="font-weight-bold mb-4">Favoritos</h6>
 
-    <nav aria-label="Page navigation example" th:if="${anuncios.totalPages > 0}"
-         th:with="currentUrl=(${@currentUrlWithoutParam.apply('page')})">
-        <ul class="pagination justify-content-center">
-            <li th:class="${anuncios.number == 0} ? 'page-item disabled' : 'page-item'">
-                <a class="page-link" th:href="@{${currentUrl}(page=${anuncios.number - 1})}" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li th:each="pageNumber : ${pageNumbers}"
-                th:class="${pageNumber == anuncios.number} ? 'page-item active' : 'page-item'">
-                <a class="page-link" th:text="${pageNumber + 1}" th:href="@{${currentUrl}(page=${pageNumber})}"></a>
-            </li>
-            <li th:class="${anuncios.totalPages == (anuncios.number + 1)} ? 'page-item disabled' : 'page-item'">
-                <a class="page-link" th:href="@{${currentUrl}(page=${anuncios.number + 1})}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <div class="row">
+        <div class="col-xl-3 mb-4 position-relative" th:each="anuncio : ${anuncios}">
+            <div class="hp-favorito" sec:authorize="isAuthenticated()" th:attr="data-anuncio_id=${anuncio.getId()}"></div>
+            <a th:href="@{/anuncio(id=${anuncio.id})}">
+                <div class="card border-0 hp-background-gray">
+                    <img class="card-img-top rounded" src="/images/lista-imovel.png" alt="localização do imovel">
+                    <div class="card-body p-0">
+                        <!--<span class="hp-font-size-12 hp-color-partial-gray font-weight-bold"-->
+                        <!--th:text="${anuncio.getTipoImovel().getNome()}"></span>-->
+                        <div class="hp-font-size-16 font-weight-bold hp-line-height-20 mt-2 text-dark"><span
+                                th:text="${anuncio.getEndereco().getBairro()}"></span><br><span
+                                th:text="${anuncio.getEndereco().getCidade()}"></span> - <span
+                                th:text="${anuncio.getEndereco().getUf()}"></span>
+                        </div>
+                        <span class="hp-font-size-12 hp-color-partial-gray font-weight-bold"><span
+                                th:text="${anuncio.getEndereco().getLogradouro()}"></span>, <span
+                                th:text="${anuncio.getEndereco().getNumero()}"></span></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 
 </div>
 <div th:replace="fragments/footer :: footer">&nbsp;</div>

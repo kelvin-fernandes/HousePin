@@ -11,6 +11,7 @@ import org.jacared.housepin.services.usuario.UsuarioService;
 import org.jacared.housepin.utils.EnumFinalidade;
 import org.jacared.housepin.utils.SpringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,10 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.jacared.housepin.utils.EnumFinalidade.*;
 
@@ -88,30 +88,6 @@ public class AnuncioController {
         return "/anuncio/cadastro";
     }
 
-    @RequestMapping(value = {"/anuncio/favoritos"}, method = RequestMethod.GET)
-    public ModelAndView favoritos() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/anuncio/favoritos");
-
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-//            Usuario anunciante = usuarioService.buscarUsuarioPorEmail(authentication.getName());
-//            anuncio.setAnunciante((Anunciante) anunciante);
-//            anuncioService.adicionar(anuncio);
-//            return "redirect:/";
-//        }
-//
-//        modelAndView.addObject("visualizando", false);
-//        if(id == 0){
-//            modelAndView.addObject("anuncio", new Anuncio());
-//            return modelAndView;
-//        }
-//
-//        Anuncio anuncio = anuncioService.buscarAnuncioPorId(id).get();
-//        modelAndView.addObject("anuncio", anuncio);
-        return modelAndView;
-    }
-
     @Transactional
     @GetMapping(value = {"/relatorio"})
     public ModelAndView relatorio(@RequestParam("finalidade") String finalidade) {
@@ -150,9 +126,25 @@ public class AnuncioController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             Usuario usuario = usuarioService.buscarUsuarioPorEmail(authentication.getName());
+            usuarioService.adicionarAnuncioFavorito(anuncio_id,usuario);
+            return Collections.singletonMap("success", true);
         }
 
-        return Collections.singletonMap("success", true);
+        return Collections.singletonMap("success", false);
+    }
+
+    @GetMapping(value = {"/anuncio/favoritos"})
+    public ModelAndView usuarioFavoritos() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioService.buscarUsuarioPorEmail(authentication.getName());
+        Set anuncios = usuario.getFavoritos();
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("anuncios", anuncios);
+        modelAndView.setViewName("/anuncio/favoritos");
+
+        return modelAndView;
     }
 
 

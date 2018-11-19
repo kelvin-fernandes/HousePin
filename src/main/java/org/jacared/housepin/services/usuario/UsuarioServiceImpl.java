@@ -63,9 +63,16 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioRepository.delete(usuario);
     }
 
-    @Overrides
+    @Override
     public void adicionarAnuncioFavorito(int anuncio_id, Usuario usuario) {
-        usuario.setFavoritos(new HashSet<>(Collections.singletonList(anuncioRepository.findById(anuncio_id))));
+        //usuario.setFavoritos(new HashSet<>(Collections.singletonList(anuncioRepository.findById(anuncio_id).get())));
+        Set favoritos = usuario.getFavoritos();
+        if (favoritos != null && favoritos.size() > 0) {
+            favoritos.add(anuncioRepository.findById(anuncio_id).get());
+            usuario.setFavoritos(favoritos);
+        } else {
+            usuario.setFavoritos(new HashSet<>(Collections.singletonList(anuncioRepository.findById(anuncio_id).get())));
+        }
         usuarioRepository.saveAndFlush(usuario);
     }
 }
