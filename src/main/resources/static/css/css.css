@@ -35,7 +35,8 @@
 .hp-base-formulario .hp-finalidade > span.marcado { color:#F23362; }
 .hp-base-formulario .hp-finalidade > span:hover { color:#F23362; }
 .hp-base-formulario .hp-select { border:0 !important;width:240px;height:48px;border-radius:0px !important; }
-.hp-base-formulario .hp-input { border:0 !important;width:240px;height:50px;border-left:1px solid #E2E2E2 !important; }
+.hp-base-formulario .hp-input { border:0 !important;width:240px;height:50px;border-left:0px solid #E2E2E2 !important; }
+.hp-base-formulario .hp-input:focus { box-shadow: 0 0 0 0 !important;border: 0 none !important;outline: 0 !important; }
 .hp-base-formulario .hp-button-search { border:0 !important;height:50px;background-color:#F23362;color:#FFF;float:right;-webkit-border-radius:30px;-webkit-border-top-left-radius:0px;-webkit-border-bottom-left-radius:0px;-moz-border-radius:30px;-moz-border-radius-topleft:0px;-moz-border-radius-bottomleft:0px;border-radius:30px;border-top-left-radius:0px;border-bottom-left-radius:0px; }
 
 .hp-usuario-logado-opcoes:before { content:'';float: right;margin-top:9px;margin-left:5px;width:10px;height:6px;background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAB6SURBVHgBdY6xDYAgEEU5WcLSklI3cATo7NQNLO3ESVwBO0tGsGQb/CRnggle8nO5z+PfkTFmjDH2zrlZFEprfRCRrwB1mKdklKD0lhgZQriUUgRjQW8wnzkE7di2Uvbbom3QzVbLUPKFfEEkeU4eoDqHxM/xltM/9QBxsDCrJ11n6gAAAABJRU5ErkJggg==');background-repeat: no-repeat; }
